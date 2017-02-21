@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8B5A99731E5C16680016933F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A99721E5C16680016933F /* AppDelegate.swift */; };
 		8B5A99751E5C16680016933F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A99741E5C16680016933F /* ViewController.swift */; };
-		8B5A99781E5C16680016933F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A99761E5C16680016933F /* Main.storyboard */; };
 		8B5A997B1E5C16680016933F /* Mock_HieuNT52.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A99791E5C16680016933F /* Mock_HieuNT52.xcdatamodeld */; };
 		8B5A997D1E5C16680016933F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A997C1E5C16680016933F /* Assets.xcassets */; };
 		8B5A99801E5C16680016933F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A997E1E5C16680016933F /* LaunchScreen.storyboard */; };
@@ -38,7 +37,6 @@
 		8B5A996F1E5C16680016933F /* Mock_HieuNT52.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mock_HieuNT52.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5A99721E5C16680016933F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B5A99741E5C16680016933F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8B5A99771E5C16680016933F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B5A997A1E5C16680016933F /* Mock_HieuNT52.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mock_HieuNT52.xcdatamodel; sourceTree = "<group>"; };
 		8B5A997C1E5C16680016933F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B5A997F1E5C16680016933F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,13 +97,14 @@
 		8B5A99711E5C16680016933F /* Mock_HieuNT52 */ = {
 			isa = PBXGroup;
 			children = (
+				8B5A99A41E5C195B0016933F /* Models */,
+				8B5A99A51E5C195B0016933F /* Controllers */,
+				8B5A99A61E5C195B0016933F /* Network */,
+				8B5A99A71E5C195B0016933F /* Utility */,
+				8B5A99A81E5C195B0016933F /* Views */,
+				8B5A99A31E5C18790016933F /* SupportingFiles */,
 				8B5A99721E5C16680016933F /* AppDelegate.swift */,
 				8B5A99741E5C16680016933F /* ViewController.swift */,
-				8B5A99761E5C16680016933F /* Main.storyboard */,
-				8B5A997C1E5C16680016933F /* Assets.xcassets */,
-				8B5A997E1E5C16680016933F /* LaunchScreen.storyboard */,
-				8B5A99811E5C16680016933F /* Info.plist */,
-				8B5A99791E5C16680016933F /* Mock_HieuNT52.xcdatamodeld */,
 			);
 			path = Mock_HieuNT52;
 			sourceTree = "<group>";
@@ -126,6 +125,52 @@
 				8B5A99971E5C16680016933F /* Info.plist */,
 			);
 			path = Mock_HieuNT52UITests;
+			sourceTree = "<group>";
+		};
+		8B5A99A31E5C18790016933F /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				8B5A997C1E5C16680016933F /* Assets.xcassets */,
+				8B5A997E1E5C16680016933F /* LaunchScreen.storyboard */,
+				8B5A99811E5C16680016933F /* Info.plist */,
+				8B5A99791E5C16680016933F /* Mock_HieuNT52.xcdatamodeld */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		8B5A99A41E5C195B0016933F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8B5A99A51E5C195B0016933F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8B5A99A61E5C195B0016933F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8B5A99A71E5C195B0016933F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		8B5A99A81E5C195B0016933F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,7 +285,6 @@
 			files = (
 				8B5A99801E5C16680016933F /* LaunchScreen.storyboard in Resources */,
 				8B5A997D1E5C16680016933F /* Assets.xcassets in Resources */,
-				8B5A99781E5C16680016933F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,14 +347,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8B5A99761E5C16680016933F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8B5A99771E5C16680016933F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8B5A997E1E5C16680016933F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
