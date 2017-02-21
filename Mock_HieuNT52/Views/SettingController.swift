@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  File1.swift
 //  Mock_HieuNT52
 //
 //  Created by Developer on 2/21/17.
@@ -8,19 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SettingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        navigationItem.title = "Setting"
         view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-
