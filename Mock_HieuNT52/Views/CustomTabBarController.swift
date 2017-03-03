@@ -12,9 +12,11 @@ import UIKit
 class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // 1.
         let moviesListController = MoviesListController(collectionViewLayout: UICollectionViewFlowLayout())
         let firstNavigationController = UINavigationController(rootViewController: moviesListController)
+        //
         firstNavigationController.title = "Movies List"
         firstNavigationController.tabBarItem.image = UIImage(named: "messenger_icon")
         // 2.
@@ -38,8 +40,9 @@ class CustomTabBarController: UITabBarController {
         //
         let topBorder = CALayer()
         topBorder.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
-        topBorder.backgroundColor = UIColor.rgb(red: 229, green: 231, blue: 235).cgColor
+        topBorder.backgroundColor = headerColor.cgColor
         tabBar.layer.addSublayer(topBorder)
         tabBar.clipsToBounds = true
+        
     }
 }

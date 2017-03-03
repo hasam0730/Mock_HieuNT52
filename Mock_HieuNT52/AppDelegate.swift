@@ -19,15 +19,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         //
-        window?.rootViewController = CustomTabBarController()
-        //
-        UINavigationBar.appearance().barTintColor = UIColor(red: 51/255, green: 90/255, blue: 149/255, alpha: 1)
+        UINavigationBar.appearance().barTintColor = headerColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
-        UITabBar.appearance().tintColor = UIColor.rgb(red: 70, green: 146, blue: 250)
+        UITabBar.appearance().tintColor = headerColor
         //
         application.statusBarStyle = .lightContent
         //
+        let revealController = SWRevealViewController()
+        //
+        revealController.frontViewController = CustomTabBarController()
+        revealController.rearViewController = UserController()
+        //
+        window?.rootViewController = revealController
+        //
+        determiningSizeIphone()
+        //
         return true
+    }
+    
+    func determiningSizeIphone() {
+        let widthScreen = UIScreen.main.bounds.size.width
+        if (widthScreen == 375) { // IP7
+            typeIphone = sizeIPhone.IPhone7
+        } else if (widthScreen == 414) { // IP7+
+            typeIphone = sizeIPhone.IPhone7Plus
+        } else if (widthScreen == 320) { // IP SE
+            typeIphone = sizeIPhone.IPhoneSE
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

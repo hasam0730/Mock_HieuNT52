@@ -29,3 +29,19 @@ extension UIView {
                                                       views: viewsDictionary))
     }
 }
+
+extension UIViewController {
+    func showAlertController( titleOfAlert: String, messageOfAlert : String, actionSave : @escaping (()->Void), actionCancel : @escaping (()->Void) ) {
+        let refreshAlert = UIAlertController(title: titleOfAlert, message: messageOfAlert, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default) { action in
+            actionSave()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { action in
+            actionCancel()
+        }
+        refreshAlert.addAction(okAction)
+        refreshAlert.addAction(cancelAction)
+        self.present(refreshAlert, animated: true, completion: nil)
+    }
+}
