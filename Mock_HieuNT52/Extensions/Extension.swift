@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 
 extension UIColor {
     class func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
@@ -32,7 +32,7 @@ extension UIView {
 
 extension UIViewController {
     func showAlertController( titleOfAlert: String, messageOfAlert : String, actionSave : @escaping (()->Void), actionCancel : @escaping (()->Void) ) {
-        let refreshAlert = UIAlertController(title: titleOfAlert, message: messageOfAlert, preferredStyle: .alert)
+        let alert = UIAlertController(title: titleOfAlert, message: messageOfAlert, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default) { action in
             actionSave()
         }
@@ -40,8 +40,42 @@ extension UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { action in
             actionCancel()
         }
-        refreshAlert.addAction(okAction)
-        refreshAlert.addAction(cancelAction)
-        self.present(refreshAlert, animated: true, completion: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func castingFavMovieToMovie(input: FavoriteMovies) -> Movie{
+        var movie = Movie()
+        movie.poster_path =  input.poster_path
+        movie.adult = input.adult
+        movie.id = Int(input.id)
+        movie.original_title = input.original_title
+        movie.original_language = input.original_language
+        movie.title = input.title
+        movie.backdrop_path = input.backdrop_path
+        movie.popularity = Int(input.popularity)
+        movie.vote_count = input.vote_count
+        movie.vote_average = input.vote_average
+        movie.status = input.status
+        return movie
     }
 }
+
+extension NSManagedObject {
+    class var entityName : String {
+        let components = NSStringFromClass(self).components(separatedBy: ".")
+        return components[1]
+    }
+}
+
+extension NSManagedObjectContext {
+    
+    func insert<T: NSManagedObject>(entity: T.Type) -> T {
+        let entityName = entity.entityName
+        return NSEntityDescription.insertNewObject(forEntityName: entityName, into:self) as! T
+    }
+    
+}
+
+

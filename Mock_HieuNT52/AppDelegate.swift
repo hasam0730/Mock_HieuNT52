@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,8 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         //
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        //
         UINavigationBar.appearance().barTintColor = headerColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().tintColor = headerColor
         //
         application.statusBarStyle = .lightContent
@@ -33,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = revealController
         //
         determiningSizeIphone()
+        //
+        registerNotification()
         //
         return true
     }
@@ -69,4 +76,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func registerNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            
+        }
+    }
+    
+//    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+//        switch application.applicationState {
+//        case .active:
+//            print("active")
+//        case .background:
+//            print("background")
+//        case .inactive:
+//            print("inactive")
+//        }
+//    }
 }

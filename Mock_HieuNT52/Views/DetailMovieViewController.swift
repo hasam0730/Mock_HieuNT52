@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class DetailMovieViewController: UIViewController {
     var xCoordinate = 0
@@ -52,7 +53,7 @@ class DetailMovieViewController: UIViewController {
                     attributeTextTime.append(NSAttributedString(string: "\n🤵Cast & Crew", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: .infinity), NSForegroundColorAttributeName: UIColor.darkGray]))
                     //
                     let paraStyle = NSMutableParagraphStyle()
-                    paraStyle.lineSpacing = 0
+                    paraStyle.lineSpacing = 4
                     attributeTextTime.addAttribute(NSParagraphStyleAttributeName, value: paraStyle, range: NSMakeRange(0, attributeTextTime.string.characters.count))
                     //
                     strSelf.timeTextView.attributedText = attributeTextTime
@@ -123,12 +124,11 @@ class DetailMovieViewController: UIViewController {
         view.addSubview(listCastScrollView)
         view.addSubview(overviewTextView)
         view.addSubview(favButton)
-
         //
-        self.view.addConstraintsWithFormat(format: "V:|[v0]|", views: mainScrollView)
-        self.view.addConstraintsWithFormat(format: "H:|[v0]|", views: mainScrollView)
+//        self.view.addConstraintsWithFormat(format: "V:|[v0]|", views: mainScrollView)
+//        self.view.addConstraintsWithFormat(format: "H:|[v0]|", views: mainScrollView)
         //
-        self.view.addConstraintsWithFormat(format: "V:|-0-[v0(52)]-0-[v1(160)]-5-[v2(30)]-0-[v3(52)]-0-[v4]-0-|", views: releaseRateTextView, imgPoster, reminderButton, timeTextView, listCastScrollView)
+        self.view.addConstraintsWithFormat(format: "V:|-0-[v0(52)]-0-[v1(160)]-5-[v2(30)]-0-[v3(58)]-0-[v4]-0-|", views: releaseRateTextView, imgPoster, reminderButton, timeTextView, listCastScrollView)
         self.view.addConstraintsWithFormat(format: "V:|-0-[v0]-0-[v1(195)]-0-[v2]", views: releaseRateTextView, overviewTextView, timeTextView)
         self.view.addConstraintsWithFormat(format: "V:|-0-[v0(52)]", views: favButton)
         self.view.addConstraintsWithFormat(format: "H:|-5-[v0(52)]-5-[v1]-5-|", views: favButton, releaseRateTextView)
@@ -136,8 +136,8 @@ class DetailMovieViewController: UIViewController {
         self.view.addConstraintsWithFormat(format: "H:|-5-[v0(140)]", views: reminderButton)
         self.view.addConstraintsWithFormat(format: "H:|-5-[v0]-5-|", views: timeTextView)
         self.view.addConstraintsWithFormat(format: "H:|-5-[v0]-5-|", views: listCastScrollView)
+        //
         
-        // add subview to scrollView
     }
     
     let mainScrollView: UIScrollView = {
@@ -216,12 +216,72 @@ class DetailMovieViewController: UIViewController {
         return label
     }()
     
+//    func dateSelected() {
+//        
+//    }
     
     //MARK: handle action
     func handlingTapReminderButton() {
-        addingReminder(movie: movie)
+        // 1.
+        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 260))
+        datePicker.datePickerMode = UIDatePickerMode.dateAndTime
+        // add target
+//        datePicker.addTarget(self, action: #selector(dateSelected), for: UIControlEvents.valueChanged)
+        //
+        let alertController = UIAlertController(title: "", message:" " , preferredStyle: UIAlertControllerStyle.actionSheet)
+        alertController.view.addSubview(datePicker)//add subview
+        //
+        let doneAction = UIAlertAction(title: "Done", style: .cancel) { (action) in
+            // convert date to type int from datePicker
+            let dateformatter = DateFormatter()
+            dateformatter.dateStyle = .full
+            dateformatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+            dateformatter.locale = Locale.current
+            let intdate = datePicker.date.timeIntervalSince1970
+            print("date type int: \(intdate)") // print date type int
+            // convert int to date
+            let convertIntToDate = NSDate(timeIntervalSince1970: intdate)
+            let date = dateformatter.string(from: convertIntToDate as Date)
+            print("full format date: \(date)")
+            // getting time components
+            let calendar = NSCalendar.current
+            let hour = calendar.component(.hour, from: datePicker.date)
+            let minute = calendar.component(.minute, from: datePicker.date)
+            let second = calendar.component(.second, from: datePicker.date)
+            let day = calendar.component(.day, from: datePicker.date)
+            let month = calendar.component(.month, from: datePicker.date)
+            // get time components
+            var dateComponents = DateComponents()
+            dateComponents.hour = hour
+            dateComponents.minute = minute
+            dateComponents.second = second
+            dateComponents.day = day
+            dateComponents.month = month
+            print("date component: \(hour):\(minute):\(second)-\(day)/\(month)")
+            // define notification
+            let content = UNMutableNotificationContent()
+            content.title = NSString.localizedUserNotificationString(forKey: "Elon said:", arguments: nil)
+            content.body = NSString.localizedUserNotificationString(forKey: "Hello Tom！Get up, let's play with Jerry!", arguments: nil)
+            content.sound = UNNotificationSound.default()
+            content.badge = (UIApplication.shared.applicationIconBadgeNumber + 1) as NSNumber
+            content.categoryIdentifier = "com.Hieunt52.mockProject"
+            //
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let uuid = NSUUID().uuidString.lowercased()
+            let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
+            let center = UNUserNotificationCenter.current()
+            center.add(request)
+            //
+            self.addingReminder(movie: self.movie, time_reminder: Int(intdate))
+        }
+        //
+        alertController.addAction(doneAction)
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: alertController.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 300)
+        alertController.view.addConstraint(height);
+        
+        self.present(alertController, animated: true, completion: nil)
     }
-    
+ 
     func handlingTapFavoriteButton() {
         addingFavorite(movie: movie)
     }

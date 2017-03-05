@@ -21,6 +21,7 @@ let urlImage = "https://image.tmdb.org/t/p/"
 // 5
 var statusDisplayListMovie: typeDisplayListMovie = .list
 let RELOAD_NOTIFICATION = NSNotification.Name("ReloadCollectionViewMovie")
+let DISABLE_REMINDER_NOTIFICATION = NSNotification.Name("Disablereminder")
 // 6
 let headerColor = UIColor.rgb(red: 213, green: 46, blue: 90)
 let rateTextColor = UIColor.rgb(red: 54, green: 206, blue: 235)

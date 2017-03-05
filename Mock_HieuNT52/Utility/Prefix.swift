@@ -14,6 +14,10 @@ enum sizeIPhone: String {
     case IPhone7Plus
 }
 
+enum kNameEntity: String {
+    case FavoriteMovies
+}
+
 enum typeDisplayListMovie: String {
     case grid
     case list
