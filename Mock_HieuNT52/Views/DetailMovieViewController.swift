@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import CoreData
 
 class DetailMovieViewController: UIViewController {
     var xCoordinate = 0
@@ -231,48 +232,10 @@ class DetailMovieViewController: UIViewController {
         let alertController = UIAlertController(title: "", message:" " , preferredStyle: UIAlertControllerStyle.actionSheet)
         alertController.view.addSubview(datePicker)//add subview
         //
-        let doneAction = UIAlertAction(title: "Done", style: .cancel) { (action) in
-            // convert date to type int from datePicker
-            let dateformatter = DateFormatter()
-            dateformatter.dateStyle = .full
-            dateformatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-            dateformatter.locale = Locale.current
-            let intdate = datePicker.date.timeIntervalSince1970
-            print("date type int: \(intdate)") // print date type int
-            // convert int to date
-            let convertIntToDate = NSDate(timeIntervalSince1970: intdate)
-            let date = dateformatter.string(from: convertIntToDate as Date)
-            print("full format date: \(date)")
-            // getting time components
-            let calendar = NSCalendar.current
-            let hour = calendar.component(.hour, from: datePicker.date)
-            let minute = calendar.component(.minute, from: datePicker.date)
-            let second = calendar.component(.second, from: datePicker.date)
-            let day = calendar.component(.day, from: datePicker.date)
-            let month = calendar.component(.month, from: datePicker.date)
-            // get time components
-            var dateComponents = DateComponents()
-            dateComponents.hour = hour
-            dateComponents.minute = minute
-            dateComponents.second = second
-            dateComponents.day = day
-            dateComponents.month = month
-            print("date component: \(hour):\(minute):\(second)-\(day)/\(month)")
-            // define notification
-            let content = UNMutableNotificationContent()
-            content.title = NSString.localizedUserNotificationString(forKey: "Elon said:", arguments: nil)
-            content.body = NSString.localizedUserNotificationString(forKey: "Hello Tom！Get up, let's play with Jerry!", arguments: nil)
-            content.sound = UNNotificationSound.default()
-            content.badge = (UIApplication.shared.applicationIconBadgeNumber + 1) as NSNumber
-            content.categoryIdentifier = "com.Hieunt52.mockProject"
-            //
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            let uuid = NSUUID().uuidString.lowercased()
-            let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
-            let center = UNUserNotificationCenter.current()
-            center.add(request)
-            //
-            self.addingReminder(movie: self.movie, time_reminder: Int(intdate))
+        let doneAction = UIAlertAction(title: "Done", style: .cancel) { [weak self](action) in
+            guard let strSelf = self else { return }
+            let dateInterv = datePicker.date.timeIntervalSince1970
+            strSelf.handlingNotification(timeInterval: dateInterv)
         }
         //
         alertController.addAction(doneAction)
@@ -281,7 +244,102 @@ class DetailMovieViewController: UIViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
- 
+    // 1. timeInterval: lấy từ datepicker hoặc coredata để set thời điểm push notification
+    // 2. movie: movie để hiển thị thông tin trên notification
+    func handlingNotification(timeInterval: TimeInterval, movieNotif: Movie? = nil) {
+        // timeInterval: be used for parse to date that determining time to schedule notification
+        print("date type int: \(timeInterval)") // print date type int
+        // convert TimeInterval to date (datepicker)
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .full
+        dateformatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        dateformatter.locale = Locale.current
+        let convertIntToDate = NSDate(timeIntervalSince1970: timeInterval) as Date
+        let dateString = dateformatter.string(from: convertIntToDate as Date)
+        print("full format date: \(dateString)")
+        // getting time components
+        let calendar = NSCalendar.current
+        let hour = calendar.component(.hour, from: convertIntToDate)
+        let minute = calendar.component(.minute, from: convertIntToDate)
+        let second = calendar.component(.second, from: convertIntToDate)
+        let day = calendar.component(.day, from: convertIntToDate)
+        let month = calendar.component(.month, from: convertIntToDate)
+        // get time components
+        var dateComponents = DateComponents()
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        dateComponents.second = second
+        dateComponents.day = day
+        dateComponents.month = month
+        // define notification
+        let content = UNMutableNotificationContent()
+        if let mv = movieNotif {
+            content.title = NSString.localizedUserNotificationString(forKey: "\(mv.title!)", arguments: nil)
+            content.body = NSString.localizedUserNotificationString(forKey: "Hello Hieu！Get up, It's time to watch \"\(mv.title!)!\"", arguments: nil)
+        } else {
+            content.title = NSString.localizedUserNotificationString(forKey: "\(movie.title!)", arguments: nil)
+            content.body = NSString.localizedUserNotificationString(forKey: "Hello Hieu！Get up, It's time to watch \"\(movie.title!)!\"", arguments: nil)
+        }
+        
+        content.sound = UNNotificationSound.default()
+        content.badge = (UIApplication.shared.applicationIconBadgeNumber + 1) as NSNumber
+        content.categoryIdentifier = "com.Hieunt52.mockProject"
+        //
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false) // schedule time for notification
+        let uuid = NSUUID().uuidString.lowercased()
+        let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
+        let center = UNUserNotificationCenter.current()
+        center.add(request)
+        //------------------------handle repush notification
+        // determine the next time interval
+        var arrReminderedMovies = CoreDataHandler.shareInstance.query(ReminderMovies.self, search: NSPredicate(format: "time_reminder > %ld", timeInterval)) // return array
+        arrReminderedMovies = arrReminderedMovies.sorted(by: { $0.time_reminder < $1.time_reminder })
+        let nextTimeInterval = arrReminderedMovies[0].time_reminder
+        print(nextTimeInterval)
+        // determine delay time
+        let currentDate = Date() // current time
+        let currMonth = calendar.component(.month, from: currentDate)
+        let currDay = calendar.component(.day, from: currentDate)
+        let currHour = calendar.component(.hour, from: currentDate)
+        let currMinute = calendar.component(.minute, from: currentDate)
+        let currSecond = calendar.component(.second, from: currentDate)
+        let indate = currentDate.timeIntervalSince1970
+        print(indate)
+        //
+        let minustime = timeInterval - indate // lấy time từ datepicker và coredata trừ cho time hiện tại = time chờ trong dispathQueue
+        let minusdate = NSDate(timeIntervalSince1970: minustime) as Date
+        let minusDay = calendar.component(.day, from: minusdate)
+        let monusMonth = calendar.component(.month, from: minusdate)
+        var minusHour = calendar.component(.hour, from: minusdate)
+        var minusMinute = calendar.component(.minute, from: minusdate)
+        var minusSecond = calendar.component(.second, from: minusdate)
+        print("----------------current date: \(currHour):\(currMinute):\(currSecond)-\(currDay)/\(currMonth)")
+        print("----------------picker date: \(hour):\(minute):\(second)-\(day)/\(month)")
+        print("----------------minus date: \(minusHour):\(minusMinute):\(minusSecond)-\(minusDay)/\(monusMonth)")
+        print(minusdate)
+        if minusMinute==0 {
+            minusMinute = 1
+        }
+        if minusHour == 0 {
+            minusHour = 1
+        }
+        if minusSecond == 0 {
+            minusSecond = 1
+        }
+        let timeDelay: Double = Double(minusDay * monusMonth * minusSecond * minusMinute * minusHour)
+        //
+        let when = DispatchTime.now() + timeDelay
+        print("time delay: \(timeDelay)")
+        //
+        DispatchQueue.main.asyncAfter(deadline: when, execute: {
+            self.handlingNotification(timeInterval: TimeInterval(nextTimeInterval))
+        })
+        //-------------------------------------------------------------------------
+        self.addingReminder(movie: self.movie, time_reminder: Int(timeInterval)) // insert record to coredata
+    }
+    
+
+    
     func handlingTapFavoriteButton() {
         addingFavorite(movie: movie)
     }
