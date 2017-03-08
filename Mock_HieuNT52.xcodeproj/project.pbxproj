@@ -13,7 +13,7 @@
 		8B34A0801E6ACD14007061D5 /* FavoriteMovies+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A07E1E6ACD14007061D5 /* FavoriteMovies+CoreDataProperties.swift */; };
 		8B34A08B1E6C2303007061D5 /* ReminderMovies+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A0891E6C2303007061D5 /* ReminderMovies+CoreDataClass.swift */; };
 		8B34A08C1E6C2303007061D5 /* ReminderMovies+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A08A1E6C2303007061D5 /* ReminderMovies+CoreDataProperties.swift */; };
-		8B44E38D1E6420530097A591 /* EditInformationUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44E38C1E6420530097A591 /* EditInformationUserController.swift */; };
+		8B44E38D1E6420530097A591 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44E38C1E6420530097A591 /* EditProfileViewController.swift */; };
 		8B5A99731E5C16680016933F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A99721E5C16680016933F /* AppDelegate.swift */; };
 		8B5A997B1E5C16680016933F /* Mock_HieuNT52.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A99791E5C16680016933F /* Mock_HieuNT52.xcdatamodeld */; };
 		8B5A997D1E5C16680016933F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A997C1E5C16680016933F /* Assets.xcassets */; };
@@ -33,7 +33,12 @@
 		8B5A9A071E5DE7B90016933F /* ViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A9A061E5DE7B90016933F /* ViewController+NavBar.swift */; };
 		8B5A9A2B1E5E78350016933F /* CellGridTypeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A9A2A1E5E78350016933F /* CellGridTypeMovie.swift */; };
 		8B5A9A311E5E8BF80016933F /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A9A301E5E8BF80016933F /* SWRevealViewController.m */; };
-		8B5A9A331E5E8DA20016933F /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A9A321E5E8DA20016933F /* UserController.swift */; };
+		8B5A9A331E5E8DA20016933F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A9A321E5E8DA20016933F /* UserViewController.swift */; };
+		8BA932111E6D0444004F5170 /* ReminderMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932101E6D0444004F5170 /* ReminderMovieViewController.swift */; };
+		8BA932131E6D04D4004F5170 /* ReminderMovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932121E6D04D4004F5170 /* ReminderMovieController.swift */; };
+		8BA932151E6D066F004F5170 /* CellForRowReminderMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932141E6D066F004F5170 /* CellForRowReminderMovie.swift */; };
+		8BA932171E6E8F5F004F5170 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932161E6E8F5F004F5170 /* EditProfileController.swift */; };
+		8BA932191E6F0C48004F5170 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932181E6F0C48004F5170 /* User.swift */; };
 		8BB43BC31E66BA0E0036E7E6 /* DetailMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BC21E66BA0E0036E7E6 /* DetailMovieViewController.swift */; };
 		8BB43BC51E6842160036E7E6 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BC41E6842160036E7E6 /* Cast.swift */; };
 		8BB43BC71E6858D80036E7E6 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BC61E6858D80036E7E6 /* Prefix.swift */; };
@@ -66,7 +71,7 @@
 		8B34A07E1E6ACD14007061D5 /* FavoriteMovies+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteMovies+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8B34A0891E6C2303007061D5 /* ReminderMovies+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReminderMovies+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8B34A08A1E6C2303007061D5 /* ReminderMovies+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReminderMovies+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8B44E38C1E6420530097A591 /* EditInformationUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInformationUserController.swift; sourceTree = "<group>"; };
+		8B44E38C1E6420530097A591 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		8B5A996F1E5C16680016933F /* Mock_HieuNT52.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mock_HieuNT52.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5A99721E5C16680016933F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B5A997A1E5C16680016933F /* Mock_HieuNT52.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mock_HieuNT52.xcdatamodel; sourceTree = "<group>"; };
@@ -94,7 +99,12 @@
 		8B5A9A2E1E5E8BF70016933F /* Mock_HieuNT52-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mock_HieuNT52-Bridging-Header.h"; sourceTree = "<group>"; };
 		8B5A9A2F1E5E8BF80016933F /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		8B5A9A301E5E8BF80016933F /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		8B5A9A321E5E8DA20016933F /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		8B5A9A321E5E8DA20016933F /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		8BA932101E6D0444004F5170 /* ReminderMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderMovieViewController.swift; sourceTree = "<group>"; };
+		8BA932121E6D04D4004F5170 /* ReminderMovieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderMovieController.swift; sourceTree = "<group>"; };
+		8BA932141E6D066F004F5170 /* CellForRowReminderMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellForRowReminderMovie.swift; sourceTree = "<group>"; };
+		8BA932161E6E8F5F004F5170 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		8BA932181E6F0C48004F5170 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8BB43BC21E66BA0E0036E7E6 /* DetailMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMovieViewController.swift; sourceTree = "<group>"; };
 		8BB43BC41E6842160036E7E6 /* Cast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		8BB43BC61E6858D80036E7E6 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -203,6 +213,7 @@
 				8BB43BC41E6842160036E7E6 /* Cast.swift */,
 				8BB43BC81E6863160036E7E6 /* Crew.swift */,
 				8BB43BF61E695E290036E7E6 /* CoreDataHandler.swift */,
+				8BA932181E6F0C48004F5170 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -212,6 +223,8 @@
 			children = (
 				8BB43BEA1E694B820036E7E6 /* DetailMovieController.swift */,
 				8B34A07B1E6AB955007061D5 /* FavoriteMoviesController.swift */,
+				8BA932121E6D04D4004F5170 /* ReminderMovieController.swift */,
+				8BA932161E6E8F5F004F5170 /* EditProfileController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -243,9 +256,10 @@
 				8B5A99BB1E5C22970016933F /* SettingController.swift */,
 				8B5A99BD1E5C22A20016933F /* AbboutController.swift */,
 				8B5A9A061E5DE7B90016933F /* ViewController+NavBar.swift */,
-				8B5A9A321E5E8DA20016933F /* UserController.swift */,
-				8B44E38C1E6420530097A591 /* EditInformationUserController.swift */,
+				8B5A9A321E5E8DA20016933F /* UserViewController.swift */,
+				8B44E38C1E6420530097A591 /* EditProfileViewController.swift */,
 				8BB43BC21E66BA0E0036E7E6 /* DetailMovieViewController.swift */,
+				8BA932101E6D0444004F5170 /* ReminderMovieViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +278,7 @@
 				8B5A99C21E5C26850016933F /* CellListTypeMovieList.swift */,
 				8B5A9A2A1E5E78350016933F /* CellGridTypeMovie.swift */,
 				8B34A0791E6AB4AC007061D5 /* CellForRowTableView.swift */,
+				8BA932141E6D066F004F5170 /* CellForRowReminderMovie.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -417,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5A99BC1E5C22970016933F /* SettingController.swift in Sources */,
+				8BA932131E6D04D4004F5170 /* ReminderMovieController.swift in Sources */,
 				8B34A08C1E6C2303007061D5 /* ReminderMovies+CoreDataProperties.swift in Sources */,
 				8B5A997B1E5C16680016933F /* Mock_HieuNT52.xcdatamodeld in Sources */,
 				8B5A9A311E5E8BF80016933F /* SWRevealViewController.m in Sources */,
@@ -425,9 +441,11 @@
 				8B5A99BE1E5C22A20016933F /* AbboutController.swift in Sources */,
 				8BB43BF71E695E290036E7E6 /* CoreDataHandler.swift in Sources */,
 				8B5A99C91E5C7FA50016933F /* Movie.swift in Sources */,
+				8BA932111E6D0444004F5170 /* ReminderMovieViewController.swift in Sources */,
 				8B34A07C1E6AB955007061D5 /* FavoriteMoviesController.swift in Sources */,
 				8B5A99C31E5C26850016933F /* CellListTypeMovieList.swift in Sources */,
-				8B44E38D1E6420530097A591 /* EditInformationUserController.swift in Sources */,
+				8BA932151E6D066F004F5170 /* CellForRowReminderMovie.swift in Sources */,
+				8B44E38D1E6420530097A591 /* EditProfileViewController.swift in Sources */,
 				8BB43BC71E6858D80036E7E6 /* Prefix.swift in Sources */,
 				8B5A99731E5C16680016933F /* AppDelegate.swift in Sources */,
 				8BB43BC51E6842160036E7E6 /* Cast.swift in Sources */,
@@ -437,8 +455,10 @@
 				8B5A99AE1E5C1D970016933F /* CustomTabBarController.swift in Sources */,
 				8B5A99BA1E5C228B0016933F /* FavoriteMoviesViewController.swift in Sources */,
 				8B5A99AB1E5C1D5B0016933F /* Extension.swift in Sources */,
+				8BA932191E6F0C48004F5170 /* User.swift in Sources */,
 				8BB43BC91E6863160036E7E6 /* Crew.swift in Sources */,
-				8B5A9A331E5E8DA20016933F /* UserController.swift in Sources */,
+				8B5A9A331E5E8DA20016933F /* UserViewController.swift in Sources */,
+				8BA932171E6E8F5F004F5170 /* EditProfileController.swift in Sources */,
 				8B34A0801E6ACD14007061D5 /* FavoriteMovies+CoreDataProperties.swift in Sources */,
 				8B5A99B71E5C1F5D0016933F /* MoviesListController.swift in Sources */,
 				8B34A07A1E6AB4AC007061D5 /* CellForRowTableView.swift in Sources */,

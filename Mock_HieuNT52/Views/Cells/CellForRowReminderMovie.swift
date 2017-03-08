@@ -1,21 +1,16 @@
 //
-//  CellListTypeMovieList.swift
+//  CellForRowTableView.swift
 //  Mock_HieuNT52
 //
-//  Created by Developer on 2/21/17.
+//  Created by Developer on 3/4/17.
 //  Copyright © 2017 Developer. All rights reserved.
 //
 
 import UIKit
 
-class CellListTypeMovie: UICollectionViewCell {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
+class CellForRowReminderMovie: UITableViewCell {
     
-    var movie: Movie? {
+    var movie: ReminderMovies? {
         didSet {
             guard let movie = self.movie else { return }
             // title movie
@@ -29,33 +24,36 @@ class CellListTypeMovie: UICollectionViewCell {
                     if let data = data {
                         self.imageLogoMovie.image = UIImage(data: data)
                         self.loader.stopAnimating()
-                    } 
+                    }
                 }
             }
             // release and rate text
             let attributeTextReleaseAndRate = NSMutableAttributedString(string: "🗓 Release Date: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13, weight: .infinity)])
             attributeTextReleaseAndRate.append(NSAttributedString(string: "\(movie.release_date!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
             attributeTextReleaseAndRate.append(NSAttributedString(string: "\n⭐ Rating: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13, weight: .infinity)]))
-            attributeTextReleaseAndRate.append(NSAttributedString(string: "\(movie.vote_average!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
+            attributeTextReleaseAndRate.append(NSAttributedString(string: "\(movie.vote_average)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
             //
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 5
             attributeTextReleaseAndRate.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributeTextReleaseAndRate.string.characters.count))
             //
             self.releaseAndRateTextView.attributedText = attributeTextReleaseAndRate
-            self.releaseAndRateTextView.textColor = .white
             
             // overview text
             let attributeTextOverview = NSMutableAttributedString(string: "\(movie.overview!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.darkGray])
             self.overviewTextView.attributedText = attributeTextOverview
             
             // adult label
-            self.adultFlagLabel.isHidden = movie.adult! == true ? false : true
+            self.adultFlagLabel.isHidden = movie.adult == true ? false : true
             
             //
         }
     }
     
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -96,7 +94,7 @@ class CellListTypeMovie: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-//        label.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+        //        label.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -120,8 +118,7 @@ class CellListTypeMovie: UICollectionViewCell {
     
     let releaseAndRateTextView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = .clear
-        textView.textColor = .white
+        //        textView.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         textView.textContainer.maximumNumberOfLines = 2
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -131,8 +128,8 @@ class CellListTypeMovie: UICollectionViewCell {
     }()
     
     let overviewTextView: InsetLabel = {
-       let textView = InsetLabel()
-//        textView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        let textView = InsetLabel()
+        //        textView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.numberOfLines = 4
         return textView
@@ -140,7 +137,7 @@ class CellListTypeMovie: UICollectionViewCell {
     
     let separatorLine: UIView = {
         let view = UIView()
-        view.backgroundColor = borderColor
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -158,20 +155,5 @@ class CellListTypeMovie: UICollectionViewCell {
         imageLogoMovie.addConstraintsWithFormat(format: "H:|[v0]|", views: loader)
         imageLogoMovie.addConstraintsWithFormat(format: "V:|[v0]|", views: loader)
     }
-}
-
-
-class InsetLabel: UILabel
-{
-    let topInset = CGFloat(-40)
-    let bottomInset = CGFloat(-40)
-    let leftInset = CGFloat(0)
-    let rightInset = CGFloat(0)
     
-    override func drawText(in rect: CGRect)
-    {
-        let insets: UIEdgeInsets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
-    }
 }
-

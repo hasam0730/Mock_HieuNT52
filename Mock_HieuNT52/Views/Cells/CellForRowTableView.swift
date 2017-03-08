@@ -59,7 +59,7 @@ class CellForRowTableView: UITableViewCell {
     }
     
     func setupViews() {
-        self.backgroundColor = UIColor.rgb(red: 245, green: 247, blue: 249)
+        self.backgroundColor = bgCellColor
         //
         setupStatusImageViewLoader()
         addSubview(titleLabel)

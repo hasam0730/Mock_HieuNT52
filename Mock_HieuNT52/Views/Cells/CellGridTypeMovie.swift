@@ -38,6 +38,7 @@ class CellGridTypeMovie: UICollectionViewCell {
     }
     // 2.
     func setupViews() {
+        self.backgroundColor = bgCellColor
         //
         setupStatusImageViewLoader()
         //

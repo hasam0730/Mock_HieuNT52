@@ -23,7 +23,10 @@ var statusDisplayListMovie: typeDisplayListMovie = .list
 let RELOAD_NOTIFICATION = NSNotification.Name("ReloadCollectionViewMovie")
 let DISABLE_REMINDER_NOTIFICATION = NSNotification.Name("Disablereminder")
 // 6
-let headerColor = UIColor.rgb(red: 213, green: 46, blue: 90)
+let headerColor = UIColor.rgb(red: 98, green: 140, blue: 147)
+//58	62	71
+let borderColor = UIColor.rgb(red: 159, green: 99, blue: 28)
+let bgCellColor = UIColor.rgb(red: 58, green: 62, blue: 71)
 let rateTextColor = UIColor.rgb(red: 54, green: 206, blue: 235)
 let titleColor = UIColor.rgb(red: 211, green: 52, blue: 55)
 let backgroundColor = UIColor.rgb(red: 87, green: 115, blue: 178)

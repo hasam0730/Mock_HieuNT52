@@ -12,28 +12,27 @@ import UIKit
 class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // 1.
         let moviesListController = MoviesListController(collectionViewLayout: UICollectionViewFlowLayout())
         let firstNavigationController = UINavigationController(rootViewController: moviesListController)
         //
         firstNavigationController.title = "Movies List"
-        firstNavigationController.tabBarItem.image = UIImage(named: "messenger_icon")
+        firstNavigationController.tabBarItem.image = #imageLiteral(resourceName: "Movie")
         // 2.
         let favoriteMoviesController = FavoriteMoviesController()
         let secondNavigationController = UINavigationController(rootViewController: favoriteMoviesController)
         secondNavigationController.title = "Favorite Movies"
-        secondNavigationController.tabBarItem.image = UIImage(named: "globe_icon")
+        secondNavigationController.tabBarItem.image = #imageLiteral(resourceName: "Reminder")
         // 3.
         let settingController = SettingController()
         let thirdNavigationController = UINavigationController(rootViewController: settingController)
         thirdNavigationController.title = "Setting"
-        thirdNavigationController.tabBarItem.image = UIImage(named: "news_feed_icon")
+        thirdNavigationController.tabBarItem.image = #imageLiteral(resourceName: "Settings")
         // 4.
         let abboutController = AbboutController()
         let fourthNavigationController = UINavigationController(rootViewController: abboutController)
         fourthNavigationController.title = "Abbout"
-        fourthNavigationController.tabBarItem.image = UIImage(named: "more_icon")
+        fourthNavigationController.tabBarItem.image = #imageLiteral(resourceName: "About")
         //
         viewControllers = [firstNavigationController, secondNavigationController, thirdNavigationController, fourthNavigationController]
         tabBar.isTranslucent = false
@@ -43,6 +42,6 @@ class CustomTabBarController: UITabBarController {
         topBorder.backgroundColor = headerColor.cgColor
         tabBar.layer.addSublayer(topBorder)
         tabBar.clipsToBounds = true
-        
+        tabBar.barTintColor = headerColor
     }
 }

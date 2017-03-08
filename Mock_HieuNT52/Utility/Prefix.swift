@@ -92,3 +92,11 @@ enum kCrew: String {
     case name
     case profile_path
 }
+
+enum kUser: String {
+    case avatar
+    case name
+    case DOB
+    case email
+    case sex
+}
