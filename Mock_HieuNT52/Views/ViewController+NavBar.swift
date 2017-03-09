@@ -61,6 +61,7 @@ extension UIViewController {
     }
     
     func setupRremainingNavItems() {
+        //
         navigationController?.navigationBar.isTranslucent = false
         //
         navigationController?.navigationBar.shadowImage = UIImage()

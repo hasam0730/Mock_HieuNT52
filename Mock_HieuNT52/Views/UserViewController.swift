@@ -62,10 +62,10 @@ class UserController: UIViewController {
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         view.addSubview(headerView)
         view.addSubview(personelInformationTextView)
-        addingShadowTo(view: personelInformationTextView)
+        personelInformationTextView.addingShadowTo(view: personelInformationTextView)
         view.addSubview(editButton)
         view.addSubview(reminderListTextView)
-        addingShadowTo(view: reminderListTextView)
+        personelInformationTextView.addingShadowTo(view: reminderListTextView)
         view.addSubview(showAllReminderButton)
         headerView.addSubview(imageAvatar)
         headerView.addSubview(nameLabel)
@@ -100,13 +100,13 @@ class UserController: UIViewController {
     
     let headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.rgb(red: 126, green: 107, blue: 142)
+        view.backgroundColor = headerColor
         return view
     }()
     
     let imageAvatar: UIImageView = {
         let imgView = UIImageView()
-        imgView.contentMode = .scaleAspectFit        
+        imgView.contentMode = .scaleToFill
         imgView.layer.borderWidth = 5
         imgView.layer.borderColor = UIColor.white.cgColor
         imgView.layer.cornerRadius = 10

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 class CellGridTypeMovie: UICollectionViewCell {
     override init(frame: CGRect) {
@@ -18,16 +19,17 @@ class CellGridTypeMovie: UICollectionViewCell {
     var movie: Movie? {
         didSet {
             guard let movie = self.movie else { return }
-            DispatchQueue.global().async {
-                let urlLogoMovie = URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)")
-                let data = try? Data(contentsOf: urlLogoMovie!)
-                DispatchQueue.main.async {
-                    if let data = data {
-                        self.imgPoster.image = UIImage(data: data)
-                        self.loader.stopAnimating()
-                    }
-                }
-            }
+//            DispatchQueue.global().async {
+//                let urlLogoMovie = URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)")
+//                let data = try? Data(contentsOf: urlLogoMovie!)
+//                DispatchQueue.main.async {
+//                    if let data = data {
+//                        self.imgPoster.image = UIImage(data: data)
+//                        self.loader.stopAnimating()
+//                    }
+//                }
+//            }
+            self.self.imgPoster.sd_setImage(with: URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)"), completed: nil)
             let attributetext = NSMutableAttributedString(string: movie.title!, attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 16, weight: .infinity), NSForegroundColorAttributeName: titleColor])
             self.lblTitle.attributedText = attributetext
         }
@@ -39,8 +41,6 @@ class CellGridTypeMovie: UICollectionViewCell {
     // 2.
     func setupViews() {
         self.backgroundColor = bgCellColor
-        //
-        setupStatusImageViewLoader()
         //
         addSubview(imgPoster)
         addSubview(lblTitle)

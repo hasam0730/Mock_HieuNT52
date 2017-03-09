@@ -9,10 +9,34 @@
 import UIKit
 import UserNotifications
 import CoreData
+import SDWebImage
 
 class DetailMovieViewController: UIViewController {
     var xCoordinate = 0
     var movie = Movie()
+    let addItemView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    let visualEffectView: UIVisualEffectView = {
+        let vsEffView = UIVisualEffectView()
+        return vsEffView
+    }()
+    
+    var effect:UIVisualEffect!
+    
+    func animateOut () {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.addItemView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            self.addItemView.alpha = 0
+            
+            self.visualEffectView.effect = nil
+            
+        }) { (success:Bool) in
+            self.addItemView.removeFromSuperview()
+        }
+    }
     var idMovie: Int? {
         didSet {
             guard let idmv = idMovie else { return }
@@ -36,15 +60,16 @@ class DetailMovieViewController: UIViewController {
                     strSelf.releaseRateTextView.attributedText = attributeText
                     
                     // image poster
-                    DispatchQueue.global().async {
-                        let str = "\(urlImage)\(kPosterSize.w500.rawValue)\(data.poster_path!)"
-                        let data = try? Data(contentsOf: URL(string: str)!)
-                        DispatchQueue.main.async {
-                            if let dataImg = data {
-                                strSelf.imgPoster.image = UIImage(data: dataImg)
-                            }
-                        }
-                    }
+//                    DispatchQueue.global().async {
+//                        let str = "\(urlImage)\(kPosterSize.w500.rawValue)\(data.poster_path!)"
+//                        let data = try? Data(contentsOf: URL(string: str)!)
+//                        DispatchQueue.main.async {
+//                            if let dataImg = data {
+//                                strSelf.imgPoster.image = UIImage(data: dataImg)
+//                            }
+//                        }
+//                    }
+                    self?.imgPoster.sd_setImage(with: URL(string: "\(urlImage)\(kPosterSize.w500.rawValue)\(data.poster_path!)"), completed: nil)
                     // overview
                     let attributeTextOverview = NSMutableAttributedString(string: "📄Overview: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: .infinity)])
                     attributeTextOverview.append(NSAttributedString(string: "\n\(data.overview!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.darkGray]))
@@ -123,7 +148,8 @@ class DetailMovieViewController: UIViewController {
     }
     
     func setUpViews() {
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        //
+        view.backgroundColor = .white
         view.addSubview(mainScrollView)
         view.addSubview(releaseRateTextView)
         view.addSubview(imgPoster)
@@ -145,6 +171,9 @@ class DetailMovieViewController: UIViewController {
         self.view.addConstraintsWithFormat(format: "H:|-5-[v0]-5-|", views: timeTextView)
         self.view.addConstraintsWithFormat(format: "H:|-5-[v0]-5-|", views: listCastScrollView)
         //
+        effect = visualEffectView.effect
+        visualEffectView.effect = nil
+        addItemView.layer.cornerRadius = 5
         
     }
     
@@ -153,9 +182,10 @@ class DetailMovieViewController: UIViewController {
         scrollView.scrollsToTop = true
         return scrollView
     }()
-    
+
     let releaseRateTextView: UITextView = {
         let textView = UITextView()
+        textView.backgroundColor = .clear
         textView.text = "title"
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -197,6 +227,7 @@ class DetailMovieViewController: UIViewController {
     
     let timeTextView: UITextView = {
         let textView = UITextView()
+        textView.backgroundColor = .clear
         textView.isEditable = false
         textView.isScrollEnabled = false
         return textView
@@ -206,7 +237,7 @@ class DetailMovieViewController: UIViewController {
        let scrollView = UIScrollView()
         return scrollView
     }()
-    
+
     let favButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "Love").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -223,10 +254,6 @@ class DetailMovieViewController: UIViewController {
        let label = UILabel()
         return label
     }()
-    
-//    func dateSelected() {
-//        
-//    }
     
     //MARK: handle action
     func handlingTapReminderButton() {
@@ -345,10 +372,51 @@ class DetailMovieViewController: UIViewController {
         self.addingReminder(movie: self.movie, time_reminder: Int(timeInterval)) // insert record to coredata
     }
     
-
-    
     func handlingTapFavoriteButton() {
         addingFavorite(movie: movie)
+        let popupView = PopupView()
+        self.view.addSubview(popupView)
+        UIView.animate(withDuration: 0.5, animations: {
+            popupView.alpha = 0.8
+            
+        }, completion: { (finished: Bool) in
+            sleep(UInt32(0.8))
+            UIView.animate(withDuration: 0.5, animations: {
+                popupView.alpha = 0.0
+            }, completion: { (finished: Bool) in
+                popupView.removeFromSuperview()
+            })
+        })
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

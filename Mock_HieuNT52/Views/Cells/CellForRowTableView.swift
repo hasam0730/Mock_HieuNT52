@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CellForRowTableView: UITableViewCell {
     
@@ -17,16 +18,17 @@ class CellForRowTableView: UITableViewCell {
             let attributeTextTitle = NSMutableAttributedString(string: "🏷 " + movie.title!, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18), NSForegroundColorAttributeName: titleColor])
             self.titleLabel.attributedText = attributeTextTitle
             // logo movie
-            DispatchQueue.global().async {
-                let urlLogoMovie = URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)")
-                let data = try? Data(contentsOf: urlLogoMovie!)
-                DispatchQueue.main.async {
-                    if let data = data {
-                        self.imageLogoMovie.image = UIImage(data: data)
-                        self.loader.stopAnimating()
-                    }
-                }
-            }
+//            DispatchQueue.global().async {
+//                let urlLogoMovie = URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)")
+//                let data = try? Data(contentsOf: urlLogoMovie!)
+//                DispatchQueue.main.async {
+//                    if let data = data {
+//                        self.imageLogoMovie.image = UIImage(data: data)
+//                        self.loader.stopAnimating()
+//                    }
+//                }
+//            }
+            self.imageLogoMovie.sd_setImage(with: URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)"), completed: nil)
             // release and rate text
             let attributeTextReleaseAndRate = NSMutableAttributedString(string: "🗓 Release Date: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13, weight: .infinity)])
             attributeTextReleaseAndRate.append(NSAttributedString(string: "\(movie.release_date!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
@@ -38,7 +40,7 @@ class CellForRowTableView: UITableViewCell {
             attributeTextReleaseAndRate.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributeTextReleaseAndRate.string.characters.count))
             //
             self.releaseAndRateTextView.attributedText = attributeTextReleaseAndRate
-            
+            self.releaseAndRateTextView.textColor = .white
             // overview text
             let attributeTextOverview = NSMutableAttributedString(string: "\(movie.overview!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.darkGray])
             self.overviewTextView.attributedText = attributeTextOverview
@@ -61,7 +63,7 @@ class CellForRowTableView: UITableViewCell {
     func setupViews() {
         self.backgroundColor = bgCellColor
         //
-        setupStatusImageViewLoader()
+//        setupStatusImageViewLoader()
         addSubview(titleLabel)
         addSubview(imageLogoMovie)
         addSubview(adultFlagLabel)
@@ -94,7 +96,6 @@ class CellForRowTableView: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        //        label.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -118,7 +119,7 @@ class CellForRowTableView: UITableViewCell {
     
     let releaseAndRateTextView: UITextView = {
         let textView = UITextView()
-        //        textView.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        textView.backgroundColor = .clear
         textView.textContainer.maximumNumberOfLines = 2
         textView.isEditable = false
         textView.isScrollEnabled = false

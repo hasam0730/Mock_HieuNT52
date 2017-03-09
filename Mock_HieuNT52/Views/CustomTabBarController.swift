@@ -15,7 +15,6 @@ class CustomTabBarController: UITabBarController {
         // 1.
         let moviesListController = MoviesListController(collectionViewLayout: UICollectionViewFlowLayout())
         let firstNavigationController = UINavigationController(rootViewController: moviesListController)
-        //
         firstNavigationController.title = "Movies List"
         firstNavigationController.tabBarItem.image = #imageLiteral(resourceName: "Movie")
         // 2.

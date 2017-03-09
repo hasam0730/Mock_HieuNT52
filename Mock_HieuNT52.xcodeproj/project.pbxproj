@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D9FEFAD1C92A0BC94455BDE /* Pods_Mock_HieuNT52.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8094567C87186941D34A3930 /* Pods_Mock_HieuNT52.framework */; };
+		86FC128AB4948CB02E00A8CD /* Pods_Mock_HieuNT52UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10910DB1A80308750DC97543 /* Pods_Mock_HieuNT52UITests.framework */; };
+		8B0C24081E7186770037AA23 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C24071E7186770037AA23 /* Setting.swift */; };
 		8B34A07A1E6AB4AC007061D5 /* CellForRowTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A0791E6AB4AC007061D5 /* CellForRowTableView.swift */; };
 		8B34A07C1E6AB955007061D5 /* FavoriteMoviesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A07B1E6AB955007061D5 /* FavoriteMoviesController.swift */; };
 		8B34A07F1E6ACD14007061D5 /* FavoriteMovies+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A07D1E6ACD14007061D5 /* FavoriteMovies+CoreDataClass.swift */; };
@@ -14,6 +17,7 @@
 		8B34A08B1E6C2303007061D5 /* ReminderMovies+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A0891E6C2303007061D5 /* ReminderMovies+CoreDataClass.swift */; };
 		8B34A08C1E6C2303007061D5 /* ReminderMovies+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A08A1E6C2303007061D5 /* ReminderMovies+CoreDataProperties.swift */; };
 		8B44E38D1E6420530097A591 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44E38C1E6420530097A591 /* EditProfileViewController.swift */; };
+		8B468F611E7105C0008EF3FA /* RowSettingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B468F601E7105C0008EF3FA /* RowSettingLabel.swift */; };
 		8B5A99731E5C16680016933F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A99721E5C16680016933F /* AppDelegate.swift */; };
 		8B5A997B1E5C16680016933F /* Mock_HieuNT52.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A99791E5C16680016933F /* Mock_HieuNT52.xcdatamodeld */; };
 		8B5A997D1E5C16680016933F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A997C1E5C16680016933F /* Assets.xcassets */; };
@@ -39,12 +43,16 @@
 		8BA932151E6D066F004F5170 /* CellForRowReminderMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932141E6D066F004F5170 /* CellForRowReminderMovie.swift */; };
 		8BA932171E6E8F5F004F5170 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932161E6E8F5F004F5170 /* EditProfileController.swift */; };
 		8BA932191E6F0C48004F5170 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932181E6F0C48004F5170 /* User.swift */; };
+		8BA932201E7022BB004F5170 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9321F1E7022BB004F5170 /* PopupView.swift */; };
+		8BA932601E70FA57004F5170 /* RowSettingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9325F1E70FA57004F5170 /* RowSettingSlider.swift */; };
+		8BA932621E70FB23004F5170 /* RowSettingLabelStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA932611E70FB23004F5170 /* RowSettingLabelStepper.swift */; };
 		8BB43BC31E66BA0E0036E7E6 /* DetailMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BC21E66BA0E0036E7E6 /* DetailMovieViewController.swift */; };
 		8BB43BC51E6842160036E7E6 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BC41E6842160036E7E6 /* Cast.swift */; };
 		8BB43BC71E6858D80036E7E6 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BC61E6858D80036E7E6 /* Prefix.swift */; };
 		8BB43BC91E6863160036E7E6 /* Crew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BC81E6863160036E7E6 /* Crew.swift */; };
 		8BB43BEB1E694B820036E7E6 /* DetailMovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BEA1E694B820036E7E6 /* DetailMovieController.swift */; };
 		8BB43BF71E695E290036E7E6 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB43BF61E695E290036E7E6 /* CoreDataHandler.swift */; };
+		A1D95B3E3F631EA9990E35FC /* Pods_Mock_HieuNT52Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92FD3DF3957F50DFF1A1772 /* Pods_Mock_HieuNT52Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +73,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10910DB1A80308750DC97543 /* Pods_Mock_HieuNT52UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mock_HieuNT52UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8094567C87186941D34A3930 /* Pods_Mock_HieuNT52.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mock_HieuNT52.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B0C24071E7186770037AA23 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		8B34A0791E6AB4AC007061D5 /* CellForRowTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellForRowTableView.swift; sourceTree = "<group>"; };
 		8B34A07B1E6AB955007061D5 /* FavoriteMoviesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesController.swift; sourceTree = "<group>"; };
 		8B34A07D1E6ACD14007061D5 /* FavoriteMovies+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteMovies+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -72,6 +83,7 @@
 		8B34A0891E6C2303007061D5 /* ReminderMovies+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReminderMovies+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8B34A08A1E6C2303007061D5 /* ReminderMovies+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReminderMovies+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8B44E38C1E6420530097A591 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		8B468F601E7105C0008EF3FA /* RowSettingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSettingLabel.swift; sourceTree = "<group>"; };
 		8B5A996F1E5C16680016933F /* Mock_HieuNT52.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mock_HieuNT52.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5A99721E5C16680016933F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B5A997A1E5C16680016933F /* Mock_HieuNT52.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mock_HieuNT52.xcdatamodel; sourceTree = "<group>"; };
@@ -105,12 +117,22 @@
 		8BA932141E6D066F004F5170 /* CellForRowReminderMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellForRowReminderMovie.swift; sourceTree = "<group>"; };
 		8BA932161E6E8F5F004F5170 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		8BA932181E6F0C48004F5170 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8BA9321F1E7022BB004F5170 /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		8BA9325F1E70FA57004F5170 /* RowSettingSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSettingSlider.swift; sourceTree = "<group>"; };
+		8BA932611E70FB23004F5170 /* RowSettingLabelStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSettingLabelStepper.swift; sourceTree = "<group>"; };
 		8BB43BC21E66BA0E0036E7E6 /* DetailMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMovieViewController.swift; sourceTree = "<group>"; };
 		8BB43BC41E6842160036E7E6 /* Cast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		8BB43BC61E6858D80036E7E6 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
 		8BB43BC81E6863160036E7E6 /* Crew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crew.swift; sourceTree = "<group>"; };
 		8BB43BEA1E694B820036E7E6 /* DetailMovieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMovieController.swift; sourceTree = "<group>"; };
 		8BB43BF61E695E290036E7E6 /* CoreDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
+		8E20AB72B2D142D1EF26701E /* Pods-Mock_HieuNT52.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mock_HieuNT52.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mock_HieuNT52/Pods-Mock_HieuNT52.release.xcconfig"; sourceTree = "<group>"; };
+		9C70F38D995E79B293568DCF /* Pods-Mock_HieuNT52Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mock_HieuNT52Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mock_HieuNT52Tests/Pods-Mock_HieuNT52Tests.release.xcconfig"; sourceTree = "<group>"; };
+		CF0B393DA973F7FF110D0F7E /* Pods-Mock_HieuNT52.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mock_HieuNT52.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mock_HieuNT52/Pods-Mock_HieuNT52.debug.xcconfig"; sourceTree = "<group>"; };
+		D31ED7DD9AC47F3896D1D8BE /* Pods-Mock_HieuNT52UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mock_HieuNT52UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mock_HieuNT52UITests/Pods-Mock_HieuNT52UITests.release.xcconfig"; sourceTree = "<group>"; };
+		D92FD3DF3957F50DFF1A1772 /* Pods_Mock_HieuNT52Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mock_HieuNT52Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E916624891AEB677F205C072 /* Pods-Mock_HieuNT52UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mock_HieuNT52UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mock_HieuNT52UITests/Pods-Mock_HieuNT52UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FE8586BE713F07752AE1CD0C /* Pods-Mock_HieuNT52Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mock_HieuNT52Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mock_HieuNT52Tests/Pods-Mock_HieuNT52Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D9FEFAD1C92A0BC94455BDE /* Pods_Mock_HieuNT52.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D95B3E3F631EA9990E35FC /* Pods_Mock_HieuNT52Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,12 +156,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86FC128AB4948CB02E00A8CD /* Pods_Mock_HieuNT52UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		382A72E75F50618345B8F6E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8094567C87186941D34A3930 /* Pods_Mock_HieuNT52.framework */,
+				D92FD3DF3957F50DFF1A1772 /* Pods_Mock_HieuNT52Tests.framework */,
+				10910DB1A80308750DC97543 /* Pods_Mock_HieuNT52UITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D506362DED5DFA0F17C0B31 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF0B393DA973F7FF110D0F7E /* Pods-Mock_HieuNT52.debug.xcconfig */,
+				8E20AB72B2D142D1EF26701E /* Pods-Mock_HieuNT52.release.xcconfig */,
+				FE8586BE713F07752AE1CD0C /* Pods-Mock_HieuNT52Tests.debug.xcconfig */,
+				9C70F38D995E79B293568DCF /* Pods-Mock_HieuNT52Tests.release.xcconfig */,
+				E916624891AEB677F205C072 /* Pods-Mock_HieuNT52UITests.debug.xcconfig */,
+				D31ED7DD9AC47F3896D1D8BE /* Pods-Mock_HieuNT52UITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8B5A99661E5C16680016933F = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +193,8 @@
 				8B5A99891E5C16680016933F /* Mock_HieuNT52Tests */,
 				8B5A99941E5C16680016933F /* Mock_HieuNT52UITests */,
 				8B5A99701E5C16680016933F /* Products */,
+				6D506362DED5DFA0F17C0B31 /* Pods */,
+				382A72E75F50618345B8F6E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,6 +264,7 @@
 				8BB43BC81E6863160036E7E6 /* Crew.swift */,
 				8BB43BF61E695E290036E7E6 /* CoreDataHandler.swift */,
 				8BA932181E6F0C48004F5170 /* User.swift */,
+				8B0C24071E7186770037AA23 /* Setting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,6 +311,7 @@
 				8B44E38C1E6420530097A591 /* EditProfileViewController.swift */,
 				8BB43BC21E66BA0E0036E7E6 /* DetailMovieViewController.swift */,
 				8BA932101E6D0444004F5170 /* ReminderMovieViewController.swift */,
+				8BA9321F1E7022BB004F5170 /* PopupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,6 +331,9 @@
 				8B5A9A2A1E5E78350016933F /* CellGridTypeMovie.swift */,
 				8B34A0791E6AB4AC007061D5 /* CellForRowTableView.swift */,
 				8BA932141E6D066F004F5170 /* CellForRowReminderMovie.swift */,
+				8BA9325F1E70FA57004F5170 /* RowSettingSlider.swift */,
+				8BA932611E70FB23004F5170 /* RowSettingLabelStepper.swift */,
+				8B468F601E7105C0008EF3FA /* RowSettingLabel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -301,9 +356,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B5A999A1E5C16680016933F /* Build configuration list for PBXNativeTarget "Mock_HieuNT52" */;
 			buildPhases = (
+				63BD90A8D939C92950C06171 /* [CP] Check Pods Manifest.lock */,
 				8B5A996B1E5C16680016933F /* Sources */,
 				8B5A996C1E5C16680016933F /* Frameworks */,
 				8B5A996D1E5C16680016933F /* Resources */,
+				A3D2E69C8FDFDC50A847FE15 /* [CP] Embed Pods Frameworks */,
+				24F219F4BE04DB68E92FD836 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -318,9 +376,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B5A999D1E5C16680016933F /* Build configuration list for PBXNativeTarget "Mock_HieuNT52Tests" */;
 			buildPhases = (
+				32C79ED000D817CC88E6CBE4 /* [CP] Check Pods Manifest.lock */,
 				8B5A99821E5C16680016933F /* Sources */,
 				8B5A99831E5C16680016933F /* Frameworks */,
 				8B5A99841E5C16680016933F /* Resources */,
+				7D13D7EB500FC51924EF7614 /* [CP] Embed Pods Frameworks */,
+				2F9AFCA09568D9AFAF6F077C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -336,9 +397,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B5A99A01E5C16680016933F /* Build configuration list for PBXNativeTarget "Mock_HieuNT52UITests" */;
 			buildPhases = (
+				A44AD078EE5A18FC30CB28EA /* [CP] Check Pods Manifest.lock */,
 				8B5A998D1E5C16680016933F /* Sources */,
 				8B5A998E1E5C16680016933F /* Frameworks */,
 				8B5A998F1E5C16680016933F /* Resources */,
+				6E57E2B2AECF0D382CE82475 /* [CP] Embed Pods Frameworks */,
+				9C2411135C43D3B5437FB9BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -426,6 +490,144 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24F219F4BE04DB68E92FD836 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mock_HieuNT52/Pods-Mock_HieuNT52-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F9AFCA09568D9AFAF6F077C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mock_HieuNT52Tests/Pods-Mock_HieuNT52Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		32C79ED000D817CC88E6CBE4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		63BD90A8D939C92950C06171 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6E57E2B2AECF0D382CE82475 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mock_HieuNT52UITests/Pods-Mock_HieuNT52UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D13D7EB500FC51924EF7614 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mock_HieuNT52Tests/Pods-Mock_HieuNT52Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C2411135C43D3B5437FB9BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mock_HieuNT52UITests/Pods-Mock_HieuNT52UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3D2E69C8FDFDC50A847FE15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mock_HieuNT52/Pods-Mock_HieuNT52-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A44AD078EE5A18FC30CB28EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8B5A996B1E5C16680016933F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -446,15 +648,19 @@
 				8B5A99C31E5C26850016933F /* CellListTypeMovieList.swift in Sources */,
 				8BA932151E6D066F004F5170 /* CellForRowReminderMovie.swift in Sources */,
 				8B44E38D1E6420530097A591 /* EditProfileViewController.swift in Sources */,
+				8B0C24081E7186770037AA23 /* Setting.swift in Sources */,
 				8BB43BC71E6858D80036E7E6 /* Prefix.swift in Sources */,
+				8BA932621E70FB23004F5170 /* RowSettingLabelStepper.swift in Sources */,
 				8B5A99731E5C16680016933F /* AppDelegate.swift in Sources */,
 				8BB43BC51E6842160036E7E6 /* Cast.swift in Sources */,
 				8BB43BC31E66BA0E0036E7E6 /* DetailMovieViewController.swift in Sources */,
 				8BB43BEB1E694B820036E7E6 /* DetailMovieController.swift in Sources */,
+				8BA932201E7022BB004F5170 /* PopupView.swift in Sources */,
 				8B5A99C51E5C7BFB0016933F /* Constants.swift in Sources */,
 				8B5A99AE1E5C1D970016933F /* CustomTabBarController.swift in Sources */,
 				8B5A99BA1E5C228B0016933F /* FavoriteMoviesViewController.swift in Sources */,
 				8B5A99AB1E5C1D5B0016933F /* Extension.swift in Sources */,
+				8B468F611E7105C0008EF3FA /* RowSettingLabel.swift in Sources */,
 				8BA932191E6F0C48004F5170 /* User.swift in Sources */,
 				8BB43BC91E6863160036E7E6 /* Crew.swift in Sources */,
 				8B5A9A331E5E8DA20016933F /* UserViewController.swift in Sources */,
@@ -464,6 +670,7 @@
 				8B34A07A1E6AB4AC007061D5 /* CellForRowTableView.swift in Sources */,
 				8B34A07F1E6ACD14007061D5 /* FavoriteMovies+CoreDataClass.swift in Sources */,
 				8B34A08B1E6C2303007061D5 /* ReminderMovies+CoreDataClass.swift in Sources */,
+				8BA932601E70FA57004F5170 /* RowSettingSlider.swift in Sources */,
 				8B5A9A071E5DE7B90016933F /* ViewController+NavBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +811,7 @@
 		};
 		8B5A999B1E5C16680016933F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF0B393DA973F7FF110D0F7E /* Pods-Mock_HieuNT52.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -621,6 +829,7 @@
 		};
 		8B5A999C1E5C16680016933F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E20AB72B2D142D1EF26701E /* Pods-Mock_HieuNT52.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -637,6 +846,7 @@
 		};
 		8B5A999E1E5C16680016933F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE8586BE713F07752AE1CD0C /* Pods-Mock_HieuNT52Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -652,6 +862,7 @@
 		};
 		8B5A999F1E5C16680016933F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C70F38D995E79B293568DCF /* Pods-Mock_HieuNT52Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -667,6 +878,7 @@
 		};
 		8B5A99A11E5C16680016933F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E916624891AEB677F205C072 /* Pods-Mock_HieuNT52UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = TR3J5S5CGX;
@@ -681,6 +893,7 @@
 		};
 		8B5A99A21E5C16680016933F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D31ED7DD9AC47F3896D1D8BE /* Pods-Mock_HieuNT52UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = TR3J5S5CGX;

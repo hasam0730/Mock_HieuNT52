@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CellListTypeMovie: UICollectionViewCell {
 
@@ -22,16 +23,17 @@ class CellListTypeMovie: UICollectionViewCell {
             let attributeTextTitle = NSMutableAttributedString(string: "🏷 " + movie.title!, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18), NSForegroundColorAttributeName: titleColor])
             self.titleLabel.attributedText = attributeTextTitle
             // logo movie
-            DispatchQueue.global().async {
-                let urlLogoMovie = URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)")
-                let data = try? Data(contentsOf: urlLogoMovie!)
-                DispatchQueue.main.async {
-                    if let data = data {
-                        self.imageLogoMovie.image = UIImage(data: data)
-                        self.loader.stopAnimating()
-                    } 
-                }
-            }
+//            DispatchQueue.global().async {
+//                let urlLogoMovie = URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)")
+//                let data = try? Data(contentsOf: urlLogoMovie!)
+//                DispatchQueue.main.async {
+//                    if let data = data {
+//                        self.imageLogoMovie.image = UIImage(data: data)
+//                        self.loader.stopAnimating()
+//                    } 
+//                }
+//            }
+            self.imageLogoMovie.sd_setImage(with: URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)"), completed: nil)
             // release and rate text
             let attributeTextReleaseAndRate = NSMutableAttributedString(string: "🗓 Release Date: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13, weight: .infinity)])
             attributeTextReleaseAndRate.append(NSAttributedString(string: "\(movie.release_date!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)]))
@@ -61,9 +63,8 @@ class CellListTypeMovie: UICollectionViewCell {
     }
     
     func setupViews() {
-        self.backgroundColor = bgCellColor
+        addingGradientLayer(view: self, colorStartPoint: startColor, colorEndPoint: endColor, size: self.frame.size)
         //
-        setupStatusImageViewLoader()
         addSubview(titleLabel)
         addSubview(imageLogoMovie)
         addSubview(adultFlagLabel)
@@ -96,7 +97,6 @@ class CellListTypeMovie: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-//        label.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

@@ -24,11 +24,11 @@ class DataHandler {
         }).resume()
     }
     
-    // get movie from data
-    func gettingPopularMovieFromData(pageNumber: Int, completion: @escaping (_ data: [Movie]) -> Void) {
+    // get popular movie from data
+    func gettingPopularMovieFromData(urlString: String, pageNumber: Int? = 1, completion: @escaping (_ data: [Movie]) -> Void) {
         var listMovies = [Movie]()
-        let url = "\(urlMovieListPopular)\(pageNumber)"
-        gettingDataFromUrl(urlString: url, completion: {(data: NSDictionary) in
+        let urlStr = "\(urlString)\(pageNumber)"
+        gettingDataFromUrl(urlString: urlStr, completion: {(data: NSDictionary) in
             let arrMovieDictionary: [AnyObject] = data.value(forKey: "results") as! [AnyObject]
             for item in arrMovieDictionary {
                 var newMovie = Movie()
@@ -51,6 +51,16 @@ class DataHandler {
             completion(listMovies)
         })
     }
+    
+    // getting top rated movie from data
+    
+    
+    
+    // getting upcoming movie from data
+    
+    
+    
+    // getting now playing movie from data
     
     // get data detail movie by idmovie
     func gettingMovieDetailByIdMovie(idMovie: Int, completion: @escaping (_ data: Movie) ->Void) {

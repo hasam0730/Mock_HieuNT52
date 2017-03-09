@@ -100,3 +100,11 @@ enum kUser: String {
     case email
     case sex
 }
+
+enum kSetting: String {
+    case settingRateMovie
+    case settingReleaseYear
+    case settingNumberLoadding
+    case settingModeFilter
+    case settingModeSort
+}

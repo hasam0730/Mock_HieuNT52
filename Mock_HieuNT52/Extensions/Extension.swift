@@ -16,6 +16,15 @@ extension UIColor {
 }
 
 extension UIView {
+    func addingGradientLayer(view: UIView, colorStartPoint: UIColor, colorEndPoint: UIColor, size: CGSize) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame.size = size
+        gradientLayer.colors = [colorStartPoint.cgColor, colorEndPoint.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        view.layer.addSublayer(gradientLayer)
+    }
+    
     func addConstraintsWithFormat(format: String, views:UIView...) {
         var viewsDictionary = [String:UIView]()
         for(index, view) in views.enumerated() {
@@ -82,9 +91,28 @@ extension UIView {
             centerYAnchor.constraint(equalTo: anchor, constant: constant).isActive = true
         }
     }
+    
+    
+    func addingShadowTo(view: UIView) {
+        view.layer.shadowOffset = .zero
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowRadius = 4
+        view.layer.shadowOpacity = 0.5
+        view.layer.masksToBounds = false
+        view.layer.shouldRasterize = true
+    }
+    
+    func makingBorderRadius(view: UIView) {
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+    }
 }
 
 extension UIViewController {
+    func setStatusBarBackgroundColor(color: UIColor) {
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        statusBar.backgroundColor = color
+    }
     // 1
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -123,7 +151,7 @@ extension UIViewController {
     }
     
     // 5
-    func settingDataUserDefault(avatar: String? = nil, email: String? =  nil, name: String? = nil, dob: Double? = nil, sex: Bool? = nil) {
+    func settingDataDefault(avatar: String? = nil, email: String? =  nil, name: String? = nil, dob: Double? = nil, sex: Bool? = nil, settingRateMovie: Float? = nil, settingReleaseYear: Int? = nil, settingNumberLoadding: Int? = nil, settingModeFilter: Int? = nil, settingModeSort: Int? = nil) {
         let userdefault = UserDefaults.standard
         if let avatar = avatar {
             userdefault.set(avatar, forKey: kUser.avatar.rawValue)
@@ -140,9 +168,23 @@ extension UIViewController {
         if let sex = sex {
             userdefault.set(sex as Bool, forKey: kUser.sex.rawValue)
         }
+        if let rateMovie = settingRateMovie {
+            userdefault.set(rateMovie as Float, forKey: kSetting.settingRateMovie.rawValue)
+        }
+        if let releaseYear = settingReleaseYear {
+            userdefault.set(releaseYear, forKey: kSetting.settingReleaseYear.rawValue)
+        }
+        if let numberLoad = settingNumberLoadding {
+            userdefault.set(numberLoad, forKey: kSetting.settingNumberLoadding.rawValue)
+        }
+        if let modefilter = settingModeFilter {
+            userdefault.set(modefilter, forKey: kSetting.settingModeFilter.rawValue)
+        }
+        if let modesort = settingModeSort {
+            userdefault.set(modesort, forKey: kSetting.settingModeSort.rawValue)
+        }
     }
 //    /Users/developer/Library/Developer/CoreSimulator/Devices/0954154B-B595-47C6-A9C8-E404C7D527CF/data/Containers/Data/Application/ACB1A842-58AF-4C14-9A35-7E67F02CCA13/Documents/asset.JPG
-    
     // 6
     func deletingFileWith(path: String) {
         let fileManager = FileManager.default
@@ -171,15 +213,19 @@ extension UIViewController {
         return user
     }
     
-    func addingShadowTo(view: UIView) {
-        view.layer.shadowOffset = .zero
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowRadius = 4
-        view.layer.shadowOpacity = 0.5
-        view.layer.masksToBounds = false
-        view.layer.shouldRasterize = true
+    func gettingDataSettingDefault() -> Setting {
+        let userdefault = UserDefaults.standard
+        var setting = Setting()
+        setting.rateMovie = userdefault.value(forKey: kSetting.settingRateMovie.rawValue) as? Float
+        setting.releaseYear = userdefault.value(forKey: kSetting.settingReleaseYear.rawValue) as? Int
+        setting.numberLoad = userdefault.value(forKey: kSetting.settingNumberLoadding.rawValue) as? Int
+        setting.modeFilter = userdefault.value(forKey: kSetting.settingModeFilter.rawValue) as? Int
+        setting.modeSort = userdefault.value(forKey: kSetting.settingModeSort.rawValue) as? Int
+        return setting
     }
+
 }
+
 
 
 

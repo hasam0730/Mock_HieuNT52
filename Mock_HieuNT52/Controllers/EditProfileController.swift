@@ -33,7 +33,7 @@ extension EditProfileController {
                     print("error saving file")
                 }
             }
-            settingDataUserDefault(avatar: pathFile)
+            settingDataDefault(avatar: pathFile)
         }
         
     }
@@ -49,7 +49,7 @@ extension EditProfileController {
     func handlingPickerDate() {
         let date = dateOfBirthPicker.date
         let timeItv = date.timeIntervalSince1970
-        settingDataUserDefault(dob: timeItv)
+        settingDataDefault(dob: timeItv)
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = .full
         dateformatter.locale = Locale.current

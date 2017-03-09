@@ -38,14 +38,12 @@ class CellForRowReminderMovie: UITableViewCell {
             attributeTextReleaseAndRate.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributeTextReleaseAndRate.string.characters.count))
             //
             self.releaseAndRateTextView.attributedText = attributeTextReleaseAndRate
-            
+            self.releaseAndRateTextView.textColor = .white
             // overview text
             let attributeTextOverview = NSMutableAttributedString(string: "\(movie.overview!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.darkGray])
             self.overviewTextView.attributedText = attributeTextOverview
-            
             // adult label
             self.adultFlagLabel.isHidden = movie.adult == true ? false : true
-            
             //
         }
     }
@@ -59,6 +57,7 @@ class CellForRowReminderMovie: UITableViewCell {
     }
     
     func setupViews() {
+        //
         self.backgroundColor = bgCellColor
         //
         setupStatusImageViewLoader()
@@ -118,7 +117,7 @@ class CellForRowReminderMovie: UITableViewCell {
     
     let releaseAndRateTextView: UITextView = {
         let textView = UITextView()
-        //        textView.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        textView.backgroundColor = .clear
         textView.textContainer.maximumNumberOfLines = 2
         textView.isEditable = false
         textView.isScrollEnabled = false

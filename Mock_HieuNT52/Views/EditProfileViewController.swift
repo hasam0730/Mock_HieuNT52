@@ -189,7 +189,7 @@ class EditProfileController: UIViewController {
     
     func handlingSave(sender: UIButton) {
         self.save(infoImageAvatar: infoImageAvatar)
-        settingDataUserDefault(email: emailTextField.text, name: nameLabel.text, sex: sexSwitch.isOn)
+        settingDataDefault(email: emailTextField.text, name: nameLabel.text, sex: sexSwitch.isOn)
         updateUI()
     }
 }

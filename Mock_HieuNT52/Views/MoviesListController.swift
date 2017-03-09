@@ -13,6 +13,7 @@ let cellIDGrid = "cellIdGrid"
 
 class MoviesListController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     //
+    var gradientLayer: CAGradientLayer!
     var dataList = [Movie]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +33,17 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
         //
         self.getData()
         //
+        NotificationCenter.default.addObserver(self, selector: #selector(changeBackground), name: TOPRATED_NOTIFICATION , object: nil)
     }
     
-    fileprivate func getData() {
+    func changeBackground(notifnotification: NSNotification) {
+        print(notifnotification)
+    }
+    
+    fileprivate func getData(urlString: String? = urlMovieListPopular) {
         //
         let datahandler = DataHandler()
-        datahandler.gettingPopularMovieFromData(pageNumber: 1, completion: {(data:[Movie]) in
+        datahandler.gettingPopularMovieFromData(urlString: urlString!, pageNumber: 1, completion: {(data:[Movie]) in
             self.dataList = data
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
