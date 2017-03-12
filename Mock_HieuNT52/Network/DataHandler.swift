@@ -27,7 +27,7 @@ class DataHandler {
     // get popular movie from data
     func gettingMovieFrom(urlString: String, pageNumber: Int? = 1, completion: @escaping (_ data: [Movie]) -> Void) {
         var listMovies = [Movie]()
-        let urlStr = "\(urlString)\(pageNumber)"
+        let urlStr = "\(urlString)\(pageNumber!)"
         gettingDataFromUrl(urlString: urlStr, completion: {(data: NSDictionary) in
             let arrMovieDictionary: [AnyObject] = data.value(forKey: "results") as! [AnyObject]
             for item in arrMovieDictionary {

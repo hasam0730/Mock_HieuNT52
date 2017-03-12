@@ -33,10 +33,11 @@ class SettingController: UITableViewController {
     }
     
     private func setupViews() {
+        tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 600
         navigationItem.title = "Setting"
-        view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        tableView.backgroundColor = bgCellColor
         self.navigationController?.navigationBar.isTranslucent = false
     }
     
@@ -107,16 +108,6 @@ class SettingController: UITableViewController {
                 }
             }
         }
-        //
-//        var dic = [String: AnyObject]()
-//        let setting = UIViewController().gettingDataSettingDefault()
-//        dic[kSetting.settingModeFilter.rawValue] = setting.modeFilter as AnyObject
-//        dic[kSetting.settingModeSort.rawValue] = setting.modeSort as AnyObject
-//        dic[kSetting.settingRateMovie.rawValue] = setting.rateMovie as AnyObject
-//        dic[kSetting.settingReleaseYear.rawValue] = setting.releaseYear as AnyObject
-//        dic[kSetting.settingNumberLoadding.rawValue] = setting.numberLoad as AnyObject
-        //
-//        NotificationCenter.default.post(name: FILTER_NOTIFICATION, object: SettingController(), userInfo: dic)
         NotificationCenter.default.post(name: FILTER_NOTIFICATION, object: SettingController(), userInfo: nil)
     }
     

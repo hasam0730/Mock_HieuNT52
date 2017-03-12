@@ -2,4 +2,118 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mock_HieuNT52/Views/MoviesListView.swift"
+            timestampString = "511031723.257481"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "getData(urlString:modeSort:rateMovie:numberLoad:releaseYear:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mock_HieuNT52.MoviesListController.((getData in _C1509C1590818A71EE5FB36C322D8699) (urlString : Swift.Optional&lt;Swift.String&gt;, modeSort : Swift.Optional&lt;Swift.Int&gt;, rateMovie : Swift.Optional&lt;Swift.Float&gt;, numberLoad : Swift.Optional&lt;Swift.Int&gt;, releaseYear : Swift.Optional&lt;Swift.Int&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "Mock_HieuNT52"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Dev%20iOS/Mock_HieuNT52/Mock_HieuNT52/Views/MoviesListView.swift"
+                  timestampString = "511031723.475625"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "519">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mock_HieuNT52.MoviesListController.((getData in _C1509C1590818A71EE5FB36C322D8699) (urlString : Swift.Optional&lt;Swift.String&gt;, modeSort : Swift.Optional&lt;Swift.Int&gt;, rateMovie : Swift.Optional&lt;Swift.Float&gt;, numberLoad : Swift.Optional&lt;Swift.Int&gt;, releaseYear : Swift.Optional&lt;Swift.Int&gt;) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Mock_HieuNT52"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Dev%20iOS/Mock_HieuNT52/Mock_HieuNT52/Views/MoviesListView.swift"
+                  timestampString = "511031723.478121"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "1230">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mock_HieuNT52/Views/MoviesListView.swift"
+            timestampString = "511031737.762732"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "getData(urlString:modeSort:rateMovie:numberLoad:releaseYear:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mock_HieuNT52.MoviesListController.(getData in _C1509C1590818A71EE5FB36C322D8699) (urlString : Swift.Optional&lt;Swift.String&gt;, modeSort : Swift.Optional&lt;Swift.Int&gt;, rateMovie : Swift.Optional&lt;Swift.Float&gt;, numberLoad : Swift.Optional&lt;Swift.Int&gt;, releaseYear : Swift.Optional&lt;Swift.Int&gt;) -&gt; ()"
+                  moduleName = "Mock_HieuNT52"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Dev%20iOS/Mock_HieuNT52/Mock_HieuNT52/Views/MoviesListView.swift"
+                  timestampString = "511031737.978496"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mock_HieuNT52.MoviesListController.((getData in _C1509C1590818A71EE5FB36C322D8699) (urlString : Swift.Optional&lt;Swift.String&gt;, modeSort : Swift.Optional&lt;Swift.Int&gt;, rateMovie : Swift.Optional&lt;Swift.Float&gt;, numberLoad : Swift.Optional&lt;Swift.Int&gt;, releaseYear : Swift.Optional&lt;Swift.Int&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "Mock_HieuNT52"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Dev%20iOS/Mock_HieuNT52/Mock_HieuNT52/Views/MoviesListView.swift"
+                  timestampString = "511031737.981189"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "74">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mock_HieuNT52/Views/MoviesListView.swift"
+            timestampString = "511031753.000281"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "preparingConditionFilterData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

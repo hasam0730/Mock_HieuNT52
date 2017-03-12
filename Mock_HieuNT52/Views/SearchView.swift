@@ -46,6 +46,7 @@ class SearchViewController: UITableViewController {
         self.definesPresentationContext = true
         tableView.register(RowTableView.self, forCellReuseIdentifier: cellId)
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = bgCellColor
     }
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()

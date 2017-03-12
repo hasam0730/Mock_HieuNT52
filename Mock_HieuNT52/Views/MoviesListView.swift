@@ -22,12 +22,14 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
         label.textAlignment = .center
         return label
     }()
+    var urlString: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //
         view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         //
-        self.collectionView?.backgroundColor = .black
+        self.collectionView?.backgroundColor = bgCellColor
         self.collectionView?.alwaysBounceVertical = true
         //
         NotificationCenter.default.addObserver(forName: RELOAD_NOTIFICATION, object: nil, queue: nil, using: {_ in 
@@ -42,9 +44,9 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
         self.registerCellClass()
         //
 //        checkingDateUserDefault()
-        preparingConditionGetData()
+        preparingConditionFilterData()
         //
-        NotificationCenter.default.addObserver(self, selector: #selector(preparingConditionGetData), name: FILTER_NOTIFICATION , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(preparingConditionFilterData), name: FILTER_NOTIFICATION , object: nil)
     }
     
     func checkingDateUserDefault() {
@@ -69,7 +71,8 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
         if let _ = user.Sex {} else { settingDataDefault(sex: true) }
     }
     
-    func preparingConditionGetData() {
+    func preparingConditionFilterData() {
+        pageNumber = 1 // reset số đếm page đã load trước đó sau khi thay đổi trong setting
         //
         let setting = gettingDataSettingDefault()
         let modeFilter = setting.modeFilter! as Int
@@ -80,59 +83,51 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
         //
         switch modeFilter {
         case 0: // popular movie
-            getData(urlString: urlMovieListPopular, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
+            urlString = urlMovieListPopular
+            getData(urlString: urlString, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
             navigationItem.title = "Popular Movies"
         case 1: // top rated movie
-            getData(urlString: urlMovieListTopRated, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
+            urlString = urlMovieListTopRated
+            getData(urlString: urlString, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
             navigationItem.title = "TopRated Movies"
         case 2: // upcoming movie
-            getData(urlString: urlMovieListUpComing, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
+            urlString = urlMovieListUpComing
+            getData(urlString: urlString, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
             navigationItem.title = "UpComing Movies"
         case 3: // nowplaying movie
-            getData(urlString: urlMovieListNowPlaying, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
+            urlString = urlMovieListNowPlaying
+            getData(urlString: urlString, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
             navigationItem.title = "NowPlaying Movies"
         default: break
         }
     }
     
-//    func handlingFilterMovie(notifnotification: NSNotification) {
-//        preparingConditionGetData()
-//        let dataNotifi = notifnotification.userInfo
-//        guard let data = dataNotifi else { return }
-//        let modeFilter = data[kSetting.settingModeFilter.rawValue] as! Int
-//        let modeSort = data[kSetting.settingModeSort.rawValue] as! Int
-//        let rateMovie = data[kSetting.settingRateMovie.rawValue] as! Float
-//        let numberLoad = data[kSetting.settingNumberLoadding.rawValue] as! Int
-//        let releaseYear = data[kSetting.settingReleaseYear.rawValue] as! Int
-//        switch modeFilter {
-//            case 1: // popular movie
-//                getData(urlString: urlMovieListPopular, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
-//            case 2: // top rated movie
-//                getData(urlString: urlMovieListTopRated, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
-//            case 3: // upcoming movie
-//                getData(urlString: urlMovieListUpComing, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
-//            case 4: // nowplaying movie
-//                getData(urlString: urlMovieListNowPlaying, modeSort: modeSort, rateMovie: rateMovie, numberLoad: numberLoad, releaseYear: releaseYear)
-//            default: break
-//        }
-//    }
-    
-    fileprivate func getData(urlString: String? = urlMovieListPopular, modeSort: Int? = 5, rateMovie:Float? = 0.0 , numberLoad: Int? = 1, releaseYear: Int = 1970) {
+    fileprivate func getData(urlString: String? = urlMovieListPopular, modeSort: Int? = 0, rateMovie:Float? = 0.0 , numberLoad: Int? = 1, releaseYear: Int? = 1970) {
         DataHandler.shared.gettingMovieFrom(urlString: urlString!, pageNumber: 1, completion: {(data:[Movie]) in
+            let setting = self.gettingDataSettingDefault()
             //
             self.dataList = data
             self.filteredMovie = self.dataList.filter { Float($0.vote_average!) >= Float(rateMovie!)}
             //
+            var arr = [Movie]()
+            for item in self.filteredMovie {
+                if let releaseTime = Int((item.release_date?.components(separatedBy: "-")[0])!) {
+                    if setting.releaseYear! <= releaseTime {
+                        arr.append(item)
+                    }
+                }
+            }
+            self.filteredMovie = arr
+            //
             if let sorted = modeSort {
                 if (sorted == 0) {
-                    self.dataList = data.sorted(by: { $0.popularity! > $1.popularity! })
+                    self.filteredMovie = self.filteredMovie.sorted(by: { $0.popularity! > $1.popularity! })
                 } else {
-                    self.dataList = data.sorted(by: { $0.vote_average! > $1.vote_average! })
+                    self.filteredMovie = self.filteredMovie.sorted(by: { $0.vote_average! > $1.vote_average! })
                 }
             } else {
                 
             }
-            
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
             }
@@ -174,11 +169,11 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
                            initialSpringVelocity: 0.0,
                            options: .overrideInheritedCurve,
                            animations: { cell.alpha = 1.0 }, completion: { _ in })
-            cell.movie = self.dataList[indexPath.item]
+            cell.movie = self.filteredMovie[indexPath.item]
             return cell
         case .grid:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIDGrid, for: indexPath) as! CellGridTypeMovie
-            cell.movie = self.dataList[indexPath.item]
+            cell.movie = self.filteredMovie[indexPath.item]
             cell.alpha = 0.0
             UIView.animate(withDuration: 1,
                            delay: 0,
@@ -222,9 +217,73 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailView = DetailMovieViewController()
-        detailView.idMovie = self.dataList[indexPath.item].id
-        self.navigationController?.pushViewController(detailView, animated: true)
+//        let detailView = DetailMovieViewController()
+//        detailView.idMovie = self.filteredMovie[indexPath.item].id
+//        self.navigationController?.pushViewController(detailView, animated: true)
+        print(indexPath.row)
+    }
+    //
+    var pageNumber = 1
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        //
+        let setting = gettingDataSettingDefault()
+//        let modeFilter = setting.modeFilter! as Int
+        let modeSort = setting.modeSort!  as Int
+        let rateMovie = setting.rateMovie!  as Float
+        let numberLoad = setting.numberLoad!  as Int
+//        let releaseYear = setting.releaseYear! as Int
+        //
+        if indexPath.row > self.filteredMovie.count - 2 {
+            print(gettingDataSettingDefault().numberLoad ?? 0)
+            if pageNumber < numberLoad {
+                pageNumber += 1
+                DataHandler.shared.gettingMovieFrom(urlString: urlString!, pageNumber: pageNumber, completion: {(data:[Movie]) in
+                    //
+                    var dataMoreMovie = data.filter { Float($0.vote_average!) >= Float(rateMovie)}
+                    var arr = [Movie]()
+                    for item in dataMoreMovie {
+                        if let releaseTime = Int((item.release_date?.components(separatedBy: "-")[0])!) {
+                            if setting.releaseYear! <= releaseTime {
+                                arr.append(item)
+                            }
+                        }
+                    }
+                    dataMoreMovie = arr
+                    if (modeSort == 0) {
+                        dataMoreMovie = dataMoreMovie.sorted(by: { $0.popularity! > $1.popularity! })
+                    } else {
+                        dataMoreMovie = dataMoreMovie.sorted(by: { $0.vote_average! > $1.vote_average! })
+                    }
+                    for item in dataMoreMovie {
+                        self.filteredMovie.append(item)
+                    }
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                    }
+                })
+            }
+            
+            
+            
+//            pageNumber += 1
+//            DataHandler.shared.gettingMovieFrom(urlString: urlString!, pageNumber: pageNumber, completion: {(data:[Movie]) in
+//                let dataMoreMovie = data
+//                for item in dataMoreMovie {
+//                    self.filteredMovie.append(item)
+//                    self.collectionView?.performBatchUpdates({
+//                        let indexpath = IndexPath(item: self.filteredMovie.count-1, section: 0)
+////                        DispatchQueue.main.async {
+//                            self.collectionView?.insertItems(at: [indexpath])
+//                        self.collectionView?.reloadItems(at: [indexPath])
+//                            
+////                        }
+//                        
+//                    }, completion: nil)
+//                }
+//                
+//            })
+            
+        }
     }
     
     deinit {

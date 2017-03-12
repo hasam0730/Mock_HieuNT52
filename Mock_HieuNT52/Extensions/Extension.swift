@@ -218,8 +218,8 @@ extension UIViewController {
         setting.rateMovie = userdefault.value(forKey: kSetting.settingRateMovie.rawValue) as? Float ?? 5.0
         setting.releaseYear = userdefault.value(forKey: kSetting.settingReleaseYear.rawValue) as? Int ?? 1970
         setting.numberLoad = userdefault.value(forKey: kSetting.settingNumberLoadding.rawValue) as? Int ?? 1
-        setting.modeFilter = userdefault.value(forKey: kSetting.settingModeFilter.rawValue) as? Int ?? 3
-        setting.modeSort = userdefault.value(forKey: kSetting.settingModeSort.rawValue) as? Int ?? 6
+        setting.modeFilter = userdefault.value(forKey: kSetting.settingModeFilter.rawValue) as? Int ?? 0
+        setting.modeSort = userdefault.value(forKey: kSetting.settingModeSort.rawValue) as? Int ?? 0
         return setting
     }
 
