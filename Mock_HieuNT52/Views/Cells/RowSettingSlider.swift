@@ -25,6 +25,12 @@ class RowSettingSlider: UITableViewCell {
         addSubview(maximumLabel)
         addSubview(yearReleaseLabel)
         addSubview(stepper)
+        //
+        let rateMovie = UIViewController().gettingDataSettingDefault().rateMovie
+        if let ratemv = rateMovie {
+            slider.setValue(ratemv, animated: true)
+        }
+        //
         stepper.addTarget(self, action: #selector(handlingStepperChangeValue(sender:)), for: .valueChanged)
         slider.addTarget(self, action: #selector(handlingSliderChangeValue(sender:)), for: .valueChanged)
         //
@@ -69,10 +75,6 @@ class RowSettingSlider: UITableViewCell {
     
     let slider: UISlider = {
         let slider = UISlider()
-        let rateMovie = UIViewController().gettingDataSettingDefault().rateMovie
-        if let ratemv = rateMovie {
-            slider.setValue(ratemv, animated: true)
-        }
         slider.minimumValue = 0
         slider.maximumValue = 10.0
         return slider
@@ -97,16 +99,22 @@ class RowSettingSlider: UITableViewCell {
     func handlingSliderChangeValue(sender: UISlider) {
         let roundedValue = round(sender.value / step) * step
         sender.value = roundedValue
+        // update UI after change value sender
         UIViewController().settingDataDefault(settingRateMovie: roundedValue)
         let attributeText = NSMutableAttributedString(string: "Movie with rate from: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: .infinity), NSForegroundColorAttributeName: UIColor.darkGray])
         attributeText.append(NSAttributedString(string: "\(sender.value)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15), NSForegroundColorAttributeName: UIColor.darkGray]))
         self.label.attributedText = attributeText
+        // post notification to update movie list
+        NotificationCenter.default.post(name: FILTER_NOTIFICATION, object: SettingController(), userInfo: nil)
     }
     
     func handlingStepperChangeValue(sender: UIStepper) {
         UIViewController().settingDataDefault(settingReleaseYear: Int(sender.value))
+        // update UI after change value sender
         let attributeText = NSMutableAttributedString(string: "From release year: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: .infinity), NSForegroundColorAttributeName: UIColor.darkGray])
         attributeText.append(NSAttributedString(string: "\(Int(sender.value))", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15), NSForegroundColorAttributeName: UIColor.darkGray]))
         self.yearReleaseLabel.attributedText = attributeText
+        // post notification to update movie list
+        NotificationCenter.default.post(name: FILTER_NOTIFICATION, object: SettingController(), userInfo: nil)
     }
 }

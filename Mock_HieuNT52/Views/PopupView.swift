@@ -28,7 +28,7 @@ class PopupView: UIView {
         textLabel.textColor = UIColor.white
         textLabel.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         textLabel.textAlignment = .center
-        textLabel.font = UIFont(name: textLabel.font.fontName, size: 13)
+        textLabel.font = UIFont(name: textLabel.font.fontName, size: 16)
         textLabel.text = "Saved"
         self.addSubview(textLabel)
     }

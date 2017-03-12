@@ -22,7 +22,7 @@ class ReminderMovieController: UIViewController, UITableViewDelegate, UITableVie
         navigationBar.isTranslucent = false
         navigationBar.barTintColor = headerColor
         // Create left and right button for navigation item
-        let leftButton =  UIBarButtonItem(image: #imageLiteral(resourceName: "Back"), style: .done, target: self, action: #selector(back))
+        let leftButton =  UIBarButtonItem(image: #imageLiteral(resourceName: "Back").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(back))
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
         // Assign the navigation item to the navigation bar
@@ -47,17 +47,13 @@ class ReminderMovieController: UIViewController, UITableViewDelegate, UITableVie
         self.view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         tableView.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - 64)
         tableView.register(CellForRowReminderMovie.self, forCellReuseIdentifier: cellId)
         tableView.translatesAutoresizingMaskIntoConstraints = true
         tableView.rowHeight = 1000
         //
         self.searchController = UISearchController(searchResultsController:  nil)
-        
-        self.searchController.searchResultsUpdater = self
-        self.searchController.delegate = self
-        self.searchController.searchBar.delegate = self
-
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = true
 
@@ -89,9 +85,9 @@ class ReminderMovieController: UIViewController, UITableViewDelegate, UITableVie
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Warrning", message: "Are you sure that you want to delete this movie", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { action in
+                let timeScheduleReminde:Int64 = Int64(self.moviesList[indexPath.row].time_reminder)
                 self.moviesList.remove(at: indexPath.row)
-                let idmv:Int64 = Int64(self.moviesList[indexPath.row].id)
-                self.deletingMovie(idmv: idmv)
+                self.deletingMovie(timeScheRemind: timeScheduleReminde)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
             
@@ -106,35 +102,10 @@ class ReminderMovieController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        let detailView = DetailMovieViewController()
-        detailView.idMovie = Int(self.moviesList[indexPath.row].id)
-        self.navigationController?.pushViewController(detailView, animated: true)
+//        let detailView = DetailMovieViewController()
+//        detailView.idMovie = Int(self.moviesList[indexPath.row].id)
+//        self.navigationController?.pushViewController(detailView, animated: true)
     }
 }
 
-extension ReminderMovieController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-//        strScope = searchBar.scopeButtonTitles![selectedScope].lowercased()
-//        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.selectedScopeButtonIndex = 0
-//        strScope = "all"
-//        myTableView.reloadData()
-    }
-}
 
-extension ReminderMovieController: UISearchControllerDelegate {
-    
-}
-
-extension ReminderMovieController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-//        let searchBar = searchController.searchBar
-//        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-//        //        ["All", "Chocolate", "Hard", "Other"]
-//        filterContentForSearchText(searchBar.text!, scope: scope)
-//        
-    }
-}

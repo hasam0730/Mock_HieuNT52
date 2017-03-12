@@ -133,7 +133,12 @@ extension UIViewController {
         {
             let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("asset.JPG")
             let image    = UIImage(contentsOfFile: imageURL.path)
-            return image!
+            if let img = image {
+                return img
+            } else {
+                return UIImage()
+            }
+            
         }
         return UIImage()
     }
@@ -188,12 +193,6 @@ extension UIViewController {
     // 6
     func deletingFileWith(path: String) {
         let fileManager = FileManager.default
-//        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
-//        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-//        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
-//        guard let dirPath = paths.first else { return }
-//        let filePath = "\(dirPath)/\(itemName).\(fileExtension)"
-//        if  let filePath = path
         do {
             try fileManager.removeItem(atPath: path)
         } catch let error as NSError {
@@ -205,22 +204,22 @@ extension UIViewController {
     func gettingDataUserDefault() -> User {
         let userdefault = UserDefaults.standard
         var user = User()
-        user.name = userdefault.value(forKey: kUser.name.rawValue) as? String
-        user.avatar = userdefault.value(forKey: kUser.avatar.rawValue) as? String
-        user.DOB = userdefault.value(forKey: kUser.DOB.rawValue) as? Double
-        user.Email = userdefault.value(forKey: kUser.email.rawValue) as? String
-        user.Sex = userdefault.value(forKey: kUser.sex.rawValue) as? Bool
+        user.name = userdefault.value(forKey: kUser.name.rawValue) as? String ?? "nguyen trung hieu"
+        user.avatar = userdefault.value(forKey: kUser.avatar.rawValue) as? String ?? "/Users/developer/Library/Developer/CoreSimulator/Devices/0954154B-B595-47C6-A9C8-E404C7D527CF/data/Containers/Data/Application/B4DAE623-5A07-4C92-B4D7-389D042A7D6F/Documents/asset.JPG"
+        user.DOB = userdefault.value(forKey: kUser.DOB.rawValue) as? Double ?? 1615177269.0
+        user.Email = userdefault.value(forKey: kUser.email.rawValue) as? String ?? "Hasam@gmail"
+        user.Sex = userdefault.value(forKey: kUser.sex.rawValue) as? Bool ?? true
         return user
     }
     
     func gettingDataSettingDefault() -> Setting {
         let userdefault = UserDefaults.standard
         var setting = Setting()
-        setting.rateMovie = userdefault.value(forKey: kSetting.settingRateMovie.rawValue) as? Float
-        setting.releaseYear = userdefault.value(forKey: kSetting.settingReleaseYear.rawValue) as? Int
-        setting.numberLoad = userdefault.value(forKey: kSetting.settingNumberLoadding.rawValue) as? Int
-        setting.modeFilter = userdefault.value(forKey: kSetting.settingModeFilter.rawValue) as? Int
-        setting.modeSort = userdefault.value(forKey: kSetting.settingModeSort.rawValue) as? Int
+        setting.rateMovie = userdefault.value(forKey: kSetting.settingRateMovie.rawValue) as? Float ?? 5.0
+        setting.releaseYear = userdefault.value(forKey: kSetting.settingReleaseYear.rawValue) as? Int ?? 1970
+        setting.numberLoad = userdefault.value(forKey: kSetting.settingNumberLoadding.rawValue) as? Int ?? 1
+        setting.modeFilter = userdefault.value(forKey: kSetting.settingModeFilter.rawValue) as? Int ?? 3
+        setting.modeSort = userdefault.value(forKey: kSetting.settingModeSort.rawValue) as? Int ?? 6
         return setting
     }
 

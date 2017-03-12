@@ -19,7 +19,7 @@ struct Movie {
     var original_language: String?
     var title: String?
     var backdrop_path: String?
-    var popularity: Int?
+    var popularity: Double?
     var vote_count: Float?
     var video: Bool?
     var vote_average: Float?

@@ -15,8 +15,8 @@ extension ReminderMovieController {
         return array
     }
     
-    func deletingMovie(idmv: Int64) {
-        _ = CoreDataHandler.shareInstance.deleteRecords(ReminderMovies.self, search: NSPredicate(format: "id == %d", idmv))
+    func deletingMovie(timeScheRemind: Int64) {
+        _ = CoreDataHandler.shareInstance.deleteRecords(ReminderMovies.self, search: NSPredicate(format: "time_reminder == %ld", timeScheRemind))
         _ = CoreDataHandler.shareInstance.saveContext()
     }
 }

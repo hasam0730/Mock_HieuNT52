@@ -25,7 +25,7 @@ class DataHandler {
     }
     
     // get popular movie from data
-    func gettingPopularMovieFromData(urlString: String, pageNumber: Int? = 1, completion: @escaping (_ data: [Movie]) -> Void) {
+    func gettingMovieFrom(urlString: String, pageNumber: Int? = 1, completion: @escaping (_ data: [Movie]) -> Void) {
         var listMovies = [Movie]()
         let urlStr = "\(urlString)\(pageNumber)"
         gettingDataFromUrl(urlString: urlStr, completion: {(data: NSDictionary) in
@@ -41,7 +41,7 @@ class DataHandler {
                 newMovie.original_title = item.value(forKey: kParseJSon.original_title.rawValue) as? String ?? ""
                 newMovie.title = item.value(forKey: kParseJSon.title.rawValue) as? String ?? ""
                 newMovie.backdrop_path = item.value(forKey: kParseJSon.backdrop_path.rawValue) as? String ?? ""
-                newMovie.popularity = item.value(forKey: kParseJSon.popularity.rawValue) as? Int ?? 0
+                newMovie.popularity = item.value(forKey: kParseJSon.popularity.rawValue) as? Double ?? 0.0
                 newMovie.vote_count = item.value(forKey: kParseJSon.vote_count.rawValue) as? Float ?? 0
                 newMovie.video = item.value(forKey: kParseJSon.video.rawValue) as? Bool ?? false
                 newMovie.vote_average = item.value(forKey: kParseJSon.vote_average.rawValue) as? Float ?? 0
@@ -53,14 +53,32 @@ class DataHandler {
     }
     
     // getting top rated movie from data
-    
-    
-    
-    // getting upcoming movie from data
-    
-    
-    
-    // getting now playing movie from data
+    func searchingMovieWith(urlPath: String? = urlSearchMovie, nameMovie: String, completion: @escaping (_ data: [Movie]) ->Void) {
+        var listMovies = [Movie]()
+        let urlStr = "\(urlPath!)\(nameMovie)"
+        gettingDataFromUrl(urlString: urlStr, completion: {(data: NSDictionary) in
+            let arrMoviesDic: [AnyObject] = data.value(forKey: "results") as! [AnyObject]
+            for item in arrMoviesDic {
+                var newMovie = Movie()
+                newMovie.poster_path = item.value(forKey: kParseJSon.poster_path.rawValue) as? String ?? ""
+                newMovie.adult = item.value(forKey: kParseJSon.adult.rawValue) as? Bool ?? false
+                newMovie.overview = item.value(forKey: kParseJSon.overview.rawValue) as? String  ?? ""
+                newMovie.release_date = item.value(forKey: kParseJSon.release_date.rawValue) as? String ?? ""
+                newMovie.genre_ids = item.value(forKey: kParseJSon.genre_ids.rawValue) as? [Int] ?? []
+                newMovie.id = item.value(forKey: kParseJSon.id.rawValue) as? Int ?? 0
+                newMovie.original_title = item.value(forKey: kParseJSon.original_title.rawValue) as? String ?? ""
+                newMovie.title = item.value(forKey: kParseJSon.title.rawValue) as? String ?? ""
+                newMovie.backdrop_path = item.value(forKey: kParseJSon.backdrop_path.rawValue) as? String ?? ""
+                newMovie.popularity = item.value(forKey: kParseJSon.popularity.rawValue) as? Double ?? 0.0
+                newMovie.vote_count = item.value(forKey: kParseJSon.vote_count.rawValue) as? Float ?? 0
+                newMovie.video = item.value(forKey: kParseJSon.video.rawValue) as? Bool ?? false
+                newMovie.vote_average = item.value(forKey: kParseJSon.vote_average.rawValue) as? Float ?? 0
+                //
+                listMovies.append(newMovie)
+            }
+            completion(listMovies)
+        })
+    }
     
     // get data detail movie by idmovie
     func gettingMovieDetailByIdMovie(idMovie: Int, completion: @escaping (_ data: Movie) ->Void) {
@@ -76,9 +94,9 @@ class DataHandler {
             movie.original_language = data.value(forKey: kParseJSon.original_language.rawValue) as? String ?? ""
             movie.title = data.value(forKey: kParseJSon.title.rawValue) as? String ?? ""
             movie.backdrop_path = data.value(forKey: kParseJSon.poster_path.rawValue) as? String ?? ""
-            movie.popularity = data.value(forKey: kParseJSon.popularity.rawValue) as? Int ?? 0
+            movie.popularity = data.value(forKey: kParseJSon.popularity.rawValue) as? Double ?? 0
             movie.vote_count = data.value(forKey: kParseJSon.vote_count.rawValue) as? Float ?? 0
-            movie.vote_average = data.value(forKey: kParseJSon.poster_path.rawValue) as? Float ?? 0.0
+            movie.vote_average = data.value(forKey: kParseJSon.vote_average.rawValue) as? Float ?? 0.0
             //
             completion(movie)
         })

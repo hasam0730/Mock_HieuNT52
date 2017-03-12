@@ -19,24 +19,6 @@ class DetailMovieViewController: UIViewController {
         return view
     }()
     
-    let visualEffectView: UIVisualEffectView = {
-        let vsEffView = UIVisualEffectView()
-        return vsEffView
-    }()
-    
-    var effect:UIVisualEffect!
-    
-    func animateOut () {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.addItemView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.addItemView.alpha = 0
-            
-            self.visualEffectView.effect = nil
-            
-        }) { (success:Bool) in
-            self.addItemView.removeFromSuperview()
-        }
-    }
     var idMovie: Int? {
         didSet {
             guard let idmv = idMovie else { return }
@@ -58,17 +40,8 @@ class DetailMovieViewController: UIViewController {
                     attributeText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributeText.string.characters.count))
                     //
                     strSelf.releaseRateTextView.attributedText = attributeText
-                    
-                    // image poster
-//                    DispatchQueue.global().async {
-//                        let str = "\(urlImage)\(kPosterSize.w500.rawValue)\(data.poster_path!)"
-//                        let data = try? Data(contentsOf: URL(string: str)!)
-//                        DispatchQueue.main.async {
-//                            if let dataImg = data {
-//                                strSelf.imgPoster.image = UIImage(data: dataImg)
-//                            }
-//                        }
-//                    }
+                    //
+                    self?.imgPoster.setShowActivityIndicator(true)
                     self?.imgPoster.sd_setImage(with: URL(string: "\(urlImage)\(kPosterSize.w500.rawValue)\(data.poster_path!)"), completed: nil)
                     // overview
                     let attributeTextOverview = NSMutableAttributedString(string: "📄Overview: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: .infinity)])
@@ -85,24 +58,21 @@ class DetailMovieViewController: UIViewController {
                     strSelf.timeTextView.attributedText = attributeTextTime
                     
                     // castlist
-                    DataHandler.shared.gettingCastList(idMovie: idmv, completion: { (data: [Cast]) in
+                    DataHandler.shared.gettingCastList(idMovie: idmv, completion: { [weak self](data: [Cast]) in
                         for i in 0 ..< data.count {
                             let currCast = data[i]
                             DispatchQueue.global().async {
                                 let data = try? Data(contentsOf: URL(string: "\(urlImage)\(kProfileSize.w185.rawValue)\(currCast.profile_path!)")!)
-                                if let dataImg = data  {
+                                if let _ = data  {
                                     DispatchQueue.main.async {
                                         strSelf.castImageView = UIImageView()
                                         strSelf.nameCastLabel = UILabel()
                                         //
                                         let attrText = NSAttributedString(string: currCast.name!, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15), NSForegroundColorAttributeName: UIColor.darkGray])
-                                        strSelf.castImageView.image = UIImage(data: dataImg)
-                                        strSelf.castImageView.layer.shadowOffset = .zero
-                                        strSelf.castImageView.layer.shadowColor = UIColor.black.cgColor
-                                        strSelf.castImageView.layer.shadowRadius = 4
-                                        strSelf.castImageView.layer.shadowOpacity = 0.5
-                                        strSelf.castImageView.layer.masksToBounds = false
-                                        strSelf.castImageView.layer.shouldRasterize = true
+                                        strSelf.castImageView.setShowActivityIndicator(true)
+                                        strSelf.castImageView.sd_setImage(with: URL(string: "\(urlImage)\(kProfileSize.w185.rawValue)\(currCast.profile_path!)")!, placeholderImage: #imageLiteral(resourceName: "zuckdog"))
+
+                                        strSelf.castImageView.addingShadowTo(view: strSelf.castImageView)
                                         //
                                         strSelf.nameCastLabel.attributedText = attrText
                                         strSelf.nameCastLabel.textAlignment = .center
@@ -159,9 +129,6 @@ class DetailMovieViewController: UIViewController {
         view.addSubview(overviewTextView)
         view.addSubview(favButton)
         //
-//        self.view.addConstraintsWithFormat(format: "V:|[v0]|", views: mainScrollView)
-//        self.view.addConstraintsWithFormat(format: "H:|[v0]|", views: mainScrollView)
-        //
         self.view.addConstraintsWithFormat(format: "V:|-0-[v0(52)]-0-[v1(160)]-5-[v2(30)]-0-[v3(58)]-0-[v4]-0-|", views: releaseRateTextView, imgPoster, reminderButton, timeTextView, listCastScrollView)
         self.view.addConstraintsWithFormat(format: "V:|-0-[v0]-0-[v1(195)]-0-[v2]", views: releaseRateTextView, overviewTextView, timeTextView)
         self.view.addConstraintsWithFormat(format: "V:|-0-[v0(52)]", views: favButton)
@@ -171,8 +138,6 @@ class DetailMovieViewController: UIViewController {
         self.view.addConstraintsWithFormat(format: "H:|-5-[v0]-5-|", views: timeTextView)
         self.view.addConstraintsWithFormat(format: "H:|-5-[v0]-5-|", views: listCastScrollView)
         //
-        effect = visualEffectView.effect
-        visualEffectView.effect = nil
         addItemView.layer.cornerRadius = 5
         
     }
@@ -255,13 +220,13 @@ class DetailMovieViewController: UIViewController {
         return label
     }()
     
+    let popupView = PopupView()
+    
     //MARK: handle action
     func handlingTapReminderButton() {
         // 1.
         let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 260))
         datePicker.datePickerMode = UIDatePickerMode.dateAndTime
-        // add target
-//        datePicker.addTarget(self, action: #selector(dateSelected), for: UIControlEvents.valueChanged)
         //
         let alertController = UIAlertController(title: "", message:" " , preferredStyle: UIAlertControllerStyle.actionSheet)
         alertController.view.addSubview(datePicker)//add subview
@@ -270,12 +235,27 @@ class DetailMovieViewController: UIViewController {
             guard let strSelf = self else { return }
             let dateInterv = datePicker.date.timeIntervalSince1970
             strSelf.handlingNotification(timeInterval: dateInterv)
+            let width = strSelf.view.frame.width
+            let height = strSelf.view.frame.height
+            strSelf.view.addSubview(strSelf.popupView)
+            strSelf.popupView.frame = CGRect(x: width/2-50, y: height/2-50, width: 100, height: 100)
+            UIView.animate(withDuration: 0.5, animations: {
+                strSelf.popupView.alpha = 0.9
+                
+            }, completion: { (finished: Bool) in
+                sleep(UInt32(0.7))
+                UIView.animate(withDuration: 0.5, animations: {
+                    strSelf.popupView.alpha = 0.0
+                }, completion: { (finished: Bool) in
+                    strSelf.popupView.removeFromSuperview()
+                })
+            })
         }
         //
         alertController.addAction(doneAction)
         let height:NSLayoutConstraint = NSLayoutConstraint(item: alertController.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 300)
         alertController.view.addConstraint(height);
-        
+        //
         self.present(alertController, animated: true, completion: nil)
     }
     // 1. timeInterval: lấy từ datepicker hoặc coredata để set thời điểm push notification
@@ -283,15 +263,7 @@ class DetailMovieViewController: UIViewController {
     func handlingNotification(timeInterval: TimeInterval?) {
         guard let timeInterval = timeInterval else { return }
         // timeInterval: be used for parse to date that determining time to schedule notification
-//        print("date type int: \(timeInterval)") // print date type int
-        // convert TimeInterval to date (datepicker)
-//        let dateformatter = DateFormatter()
-//        dateformatter.dateStyle = .full
-//        dateformatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-//        dateformatter.locale = Locale.current
         let convertTimeintervalToDate = NSDate(timeIntervalSince1970: timeInterval) as Date
-//        let dateString = dateformatter.string(from: convertTimeintervalToDate as Date)
-//        print("full format date: \(dateString)")
         // getting time components
         let calendar = NSCalendar.current
         let hour = calendar.component(.hour, from: convertTimeintervalToDate)
@@ -303,14 +275,13 @@ class DetailMovieViewController: UIViewController {
         var dateComponents = DateComponents()
         dateComponents.hour = hour
         dateComponents.minute = minute
-        dateComponents.second = 1
+        dateComponents.second = second
         dateComponents.day = day
         dateComponents.month = month
         // define notification
         let content = UNMutableNotificationContent()
         content.title = NSString.localizedUserNotificationString(forKey: "\(movie.title!)", arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: "Hello Hieu！Get up, It's time to watch \"\(movie.title!)!\"", arguments: nil)
-        
+        content.body = NSString.localizedUserNotificationString(forKey: "Hello Hieu！Get up, It's time to see \"\(movie.title!)!\"", arguments: nil)
         content.sound = UNNotificationSound.default()
         content.badge = (UIApplication.shared.applicationIconBadgeNumber + 1) as NSNumber
         content.categoryIdentifier = "com.Hieunt52.mockProject"
@@ -329,16 +300,9 @@ class DetailMovieViewController: UIViewController {
             nextTimeInterval = arrReminderedMovies[0].time_reminder
             print(nextTimeInterval)
         }
-        
         // determine delay time
         let currentDate = Date() // current time
-        let currMonth = calendar.component(.month, from: currentDate)
-        let currDay = calendar.component(.day, from: currentDate)
-        let currHour = calendar.component(.hour, from: currentDate)
-        let currMinute = calendar.component(.minute, from: currentDate)
-        let currSecond = calendar.component(.second, from: currentDate)
         let timeIntervalDelayTime = currentDate.timeIntervalSince1970
-        print(timeIntervalDelayTime)
         //
         let minustime = timeInterval - timeIntervalDelayTime // lấy time từ datepicker và coredata trừ cho time hiện tại = time chờ trong dispathQueue
         let minusdate = NSDate(timeIntervalSince1970: minustime) as Date
@@ -347,10 +311,6 @@ class DetailMovieViewController: UIViewController {
         var minusHour = calendar.component(.hour, from: minusdate)
         var minusMinute = calendar.component(.minute, from: minusdate)
         var minusSecond = calendar.component(.second, from: minusdate)
-        print("----------------current date: \(currHour):\(currMinute):\(currSecond)-\(currDay)/\(currMonth)")
-        print("----------------picker date: \(hour):\(minute):\(second)-\(day)/\(month)")
-        print("----------------minus date: \(minusHour):\(minusMinute):\(minusSecond)-\(minusDay)/\(monusMonth)")
-        print(minusdate)
         if minusMinute==0 {
             minusMinute = 1
         }
@@ -371,20 +331,23 @@ class DetailMovieViewController: UIViewController {
         //-------------------------------------------------------------------------
         self.addingReminder(movie: self.movie, time_reminder: Int(timeInterval)) // insert record to coredata
     }
-    
+    //
     func handlingTapFavoriteButton() {
         addingFavorite(movie: movie)
-        let popupView = PopupView()
+        
         self.view.addSubview(popupView)
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        popupView.frame = CGRect(x: width/2-50, y: height/2-50, width: 100, height: 100)
         UIView.animate(withDuration: 0.5, animations: {
-            popupView.alpha = 0.8
+            self.popupView.alpha = 0.9
             
         }, completion: { (finished: Bool) in
-            sleep(UInt32(0.8))
+            sleep(UInt32(0.7))
             UIView.animate(withDuration: 0.5, animations: {
-                popupView.alpha = 0.0
+                self.popupView.alpha = 0.0
             }, completion: { (finished: Bool) in
-                popupView.removeFromSuperview()
+                self.popupView.removeFromSuperview()
             })
         })
     }

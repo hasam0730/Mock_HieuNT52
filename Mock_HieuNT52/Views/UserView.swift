@@ -56,21 +56,22 @@ class UserController: UIViewController {
     }
     
     fileprivate func setupViews() {
-        view.addObserver(self, forKeyPath: "center", options: [.new, .old], context: nil)
+//        view.addObserver(self, forKeyPath: "center", options: [.new, .old], context: nil)
         //
         view.backgroundColor = UIColor.white
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         view.addSubview(headerView)
         view.addSubview(personelInformationTextView)
-        personelInformationTextView.addingShadowTo(view: personelInformationTextView)
+        //
         view.addSubview(editButton)
+        view.addSubview(separatorLine)
         view.addSubview(reminderListTextView)
-        personelInformationTextView.addingShadowTo(view: reminderListTextView)
+        //
         view.addSubview(showAllReminderButton)
         headerView.addSubview(imageAvatar)
         headerView.addSubview(nameLabel)
         //
-        view.addConstraintsWithFormat(format: "V:|[v0(220)]", views: headerView)
+        view.addConstraintsWithFormat(format: "V:|[v0(180)]", views: headerView)
         view.addConstraintsWithFormat(format: "H:|[v0]-55-|", views: headerView)
         //
         imageAvatar.anchorCenterXToSuperview()
@@ -78,22 +79,24 @@ class UserController: UIViewController {
                            left: nil,
                            bottom: nil,
                            right: nil,
-                           topConstant: 40,
+                           topConstant: 25,
                            leftConstant: 0,
                            bottomConstant: 0,
                            rightConstant: 0,
                            widthConstant: 120,
                            heightConstant: 120)
         //
-        headerView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(30)]", views: imageAvatar, nameLabel)
+        headerView.addConstraintsWithFormat(format: "V:[v0]-2-[v1(25)]", views: imageAvatar, nameLabel)
         headerView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: nameLabel)
         //
-        view.addConstraintsWithFormat(format: "V:[v0]-10-[v1(110)]", views: headerView, personelInformationTextView)
+        view.addConstraintsWithFormat(format: "V:[v0]-10-[v1(100)]", views: headerView, personelInformationTextView)
         view.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: personelInformationTextView)
         //
         editButton.anchor(personelInformationTextView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 70, widthConstant: 0, heightConstant: 40)
         //
-        reminderListTextView.anchor(editButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 160)
+        separatorLine.anchor(editButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 65, widthConstant: 0, heightConstant: 0.5)
+        //
+        reminderListTextView.anchor(separatorLine.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 160)
         //
         showAllReminderButton.anchor(reminderListTextView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 70, widthConstant: 0, heightConstant: 40)
     }
@@ -182,11 +185,18 @@ class UserController: UIViewController {
         }
         //
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 10
+        paragraphStyle.lineSpacing = 6
         attributeText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributeText.string.characters.count))
         //
         textView.attributedText = attributeText
         return textView
+    }()
+    
+    let separatorLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.addingShadowTo(view: view)
+        return view
     }()
     
     let showAllReminderButton: UIButton = {

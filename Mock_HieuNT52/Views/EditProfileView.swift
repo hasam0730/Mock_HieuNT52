@@ -85,7 +85,7 @@ class EditProfileController: UIViewController {
         //
         sexTextField.anchor(emailTextField.bottomAnchor, left: dateBirthTextField.leftAnchor, bottom: nil, right: nil, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 200, heightConstant:35)
         //
-        sexSwitch.anchor(sexTextField.topAnchor, left: nil, bottom: nil, right: dateBirthTextField.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 35)
+        sexSwitch.anchor(sexTextField.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 80, heightConstant: 35)
         //
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapAvatar))
         imageAvatar.isUserInteractionEnabled = true
@@ -201,26 +201,6 @@ extension EditProfileController: UIImagePickerControllerDelegate, UINavigationCo
             infoImageAvatar = info
             self.imageAvatar.image = info[UIImagePickerControllerOriginalImage] as? UIImage
             self.imageAvatar.contentMode = .scaleToFill
-//            let image             = info[UIImagePickerControllerOriginalImage] as? UIImage // get image in gallery
-//            let urlImg            = info[UIImagePickerControllerReferenceURL] as? NSURL // get url image in galerry
-//            let imageName         = urlImg?.lastPathComponent
-//            let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-//            let photoURL          = NSURL(fileURLWithPath: documentDirectory)
-//            let localPath         = photoURL.appendingPathComponent(imageName!)
-//            print(localPath ?? "")
-//            if FileManager.default.fileExists(atPath: localPath!.path) {
-//                print("file already exists")
-//                self.deletingFileWith(path: "\(documentDirectory)/asset.JPG")
-//                try! UIImageJPEGRepresentation(image!, 1.0)?.write(to: localPath!, options: .atomicWrite) // thuc hien copy image
-//            }
-//            else {
-//                do {
-//                    try UIImageJPEGRepresentation(image!, 1.0)?.write(to: localPath!, options: .atomicWrite) // thuc hien copy image
-//                    print("file saved")
-//                } catch {
-//                    print("error saving file")
-//                }
-//            }
         })
     }
 }

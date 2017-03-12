@@ -32,8 +32,13 @@ class CustomTabBarController: UITabBarController {
         let fourthNavigationController = UINavigationController(rootViewController: abboutController)
         fourthNavigationController.title = "Abbout"
         fourthNavigationController.tabBarItem.image = #imageLiteral(resourceName: "About")
+        // 5.
+        let searchtController = SearchViewController()
+        let fifthNavigationController = UINavigationController(rootViewController: searchtController)
+        fifthNavigationController.title = "Search View"
+        fifthNavigationController.tabBarItem.image = #imageLiteral(resourceName: "Search")
         //
-        viewControllers = [firstNavigationController, secondNavigationController, thirdNavigationController, fourthNavigationController]
+        viewControllers = [firstNavigationController, secondNavigationController, thirdNavigationController, fourthNavigationController, fifthNavigationController]
         tabBar.isTranslucent = false
         //
         let topBorder = CALayer()
