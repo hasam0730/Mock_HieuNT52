@@ -239,16 +239,17 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
                 pageNumber += 1
                 DataHandler.shared.gettingMovieFrom(urlString: urlString!, pageNumber: pageNumber, completion: {(data:[Movie]) in
                     //
-                    var dataMoreMovie = data.filter { Float($0.vote_average!) >= Float(rateMovie)}
-                    var arr = [Movie]()
-                    for item in dataMoreMovie {
-                        if let releaseTime = Int((item.release_date?.components(separatedBy: "-")[0])!) {
-                            if setting.releaseYear! <= releaseTime {
-                                arr.append(item)
-                            }
-                        }
-                    }
-                    dataMoreMovie = arr
+                    
+                    var dataMoreMovie = data.filter { return Float($0.vote_average!) >= Float(rateMovie) && setting.releaseYear! <= Int(($0.release_date?.components(separatedBy: "-")[0])!)!}
+//                    var arr = [Movie]()
+//                    for item in dataMoreMovie {
+//                        if let releaseTime = Int((item.release_date?.components(separatedBy: "-")[0])!) {
+//                            if setting.releaseYear! <= releaseTime {
+//                                arr.append(item)
+//                            }
+//                        }
+//                    }
+//                    dataMoreMovie = arr
                     if (modeSort == 0) {
                         dataMoreMovie = dataMoreMovie.sorted(by: { $0.popularity! > $1.popularity! })
                     } else {

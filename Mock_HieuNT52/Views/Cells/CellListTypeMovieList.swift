@@ -20,7 +20,7 @@ class CellListTypeMovie: UICollectionViewCell {
         didSet {
             guard let movie = self.movie else { return }
             // title movie
-            let attributeTextTitle = NSMutableAttributedString(string: "🏷 " + movie.title!, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18), NSForegroundColorAttributeName: titleColor])
+            let attributeTextTitle = NSMutableAttributedString(string: "🎞 " + movie.title!, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18), NSForegroundColorAttributeName: titleColor])
             self.titleLabel.attributedText = attributeTextTitle
             // logo movie
             self.imageLogoMovie.sd_setImage(with: URL(string: "\(urlImage)\(kLogoSize.w300)\(movie.backdrop_path!)"), completed: nil)
@@ -38,7 +38,7 @@ class CellListTypeMovie: UICollectionViewCell {
             self.releaseAndRateTextView.textColor = .white
             
             // overview text
-            let attributeTextOverview = NSMutableAttributedString(string: "\(movie.overview!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.darkGray])
+            let attributeTextOverview = NSMutableAttributedString(string: "\(movie.overview!)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.lightText])
             self.overviewTextView.attributedText = attributeTextOverview
             
             // adult label

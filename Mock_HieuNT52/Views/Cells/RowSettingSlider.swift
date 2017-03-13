@@ -114,6 +114,7 @@ class RowSettingSlider: UITableViewCell {
         attributeText.append(NSAttributedString(string: "\(sender.value)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15), NSForegroundColorAttributeName: UIColor.darkGray]))
         self.label.attributedText = attributeText
         // post notification to update movie list
+        NotificationCenter.default.post(name: FILTER_NOTIFICATION, object: SettingController(), userInfo: nil)
     }
     
     func handlingStepperChangeValue(sender: UIStepper) {
