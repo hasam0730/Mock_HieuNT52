@@ -15,6 +15,8 @@ class EditProfileController: UIViewController {
         updateUI()
     }
     
+    let popupView = PopupView()
+    
     fileprivate func updateUI() {
         let user = gettingDataUserDefault()
         emailTextField.text = user.Email
@@ -38,7 +40,6 @@ class EditProfileController: UIViewController {
         view.addSubview(sexTextField)
         view.addSubview(sexSwitch)
         //
-        //
         dateBirthTextField.inputView = dateOfBirthPicker
         //
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 360, height: 44))
@@ -52,7 +53,7 @@ class EditProfileController: UIViewController {
         self.headerView.addConstraintsWithFormat(format: "V:|-25-[v0(30)]", views: self.cancelButton)
         self.headerView.addConstraintsWithFormat(format: "H:|-15-[v0(30)]", views: self.cancelButton)
         //
-        headerView.addConstraintsWithFormat(format: "V:|-25-[v0(44)]", views: self.saveButton)
+        headerView.addConstraintsWithFormat(format: "V:|-20-[v0(44)]", views: self.saveButton)
         headerView.addConstraintsWithFormat(format: "H:[v0(44)]-15-|", views: self.saveButton)
         //
         imageAvatar.anchorCenterXToSuperview()
@@ -109,7 +110,7 @@ class EditProfileController: UIViewController {
     
     let headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_profile"))
+        view.addingGradientLayer(view: view, colorStartPoint: startColor, colorEndPoint: endColor, size: view.frame.size)
         return view
     }()
     
@@ -191,6 +192,21 @@ class EditProfileController: UIViewController {
         self.save(infoImageAvatar: infoImageAvatar)
         settingDataDefault(email: emailTextField.text, name: nameLabel.text, sex: sexSwitch.isOn)
         updateUI()
+        self.view.addSubview(popupView)
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        popupView.frame = CGRect(x: width/2-50, y: height/2-50, width: 100, height: 100)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.popupView.alpha = 0.9
+            
+        }, completion: { (finished: Bool) in
+            sleep(UInt32(0.7))
+            UIView.animate(withDuration: 0.5, animations: {
+                self.popupView.alpha = 0.0
+            }, completion: { (finished: Bool) in
+                self.popupView.removeFromSuperview()
+            })
+        })
     }
 }
 

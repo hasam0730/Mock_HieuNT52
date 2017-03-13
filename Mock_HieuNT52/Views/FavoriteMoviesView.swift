@@ -14,7 +14,7 @@ class FavoriteMoviesController: UITableViewController {
     var searchController : UISearchController! // searchController
     let noRecordLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSAttributedString(string: "No Record", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: .infinity), NSForegroundColorAttributeName: UIColor.darkGray])
+        label.attributedText = NSAttributedString(string: "No Record", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: .infinity), NSForegroundColorAttributeName: UIColor.lightGray])
         label.textAlignment = .center
         return label
     }() // no record label
@@ -22,9 +22,6 @@ class FavoriteMoviesController: UITableViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Favorite Movies"
-        view.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
-        self.setupRremainingNavItems()
         setupViews()
     }
     
@@ -51,6 +48,10 @@ class FavoriteMoviesController: UITableViewController {
         // Create two buttons for the navigation item
         navigationItem.rightBarButtonItem = leftButton
         navigationItem.backBarButtonItem =  UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        //
+        navigationItem.title = "Favorite Movies"
+        tableView.backgroundColor = bgViewColor
+        self.setupRremainingNavItems()
     }
     
     func showSearchView() {
@@ -65,6 +66,13 @@ class FavoriteMoviesController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.moviesList.count == 0 {
+            tableView.addSubview(noRecordLabel)
+            noRecordLabel.anchorCenterXToSuperview()
+            noRecordLabel.anchor(view.topAnchor, left: nil, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 100)
+        } else {
+            noRecordLabel.removeFromSuperview()
+        }
         return self.moviesList.count
     }
     

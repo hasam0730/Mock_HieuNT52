@@ -12,7 +12,7 @@ class AbboutController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Abbout"
-        view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        view.backgroundColor = bgViewColor
         navigationController?.navigationBar.isTranslucent = false
     }
 }

@@ -10,8 +10,6 @@ import UIKit
 import CoreData
 
 class UserController: UIViewController {
-    
-    
     //
     var headerMaskLayer:CAShapeLayer!
     
@@ -51,8 +49,29 @@ class UserController: UIViewController {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 12
         attributeText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributeText.string.characters.count))
+        //
         personelInformationTextView.attributedText = attributeText
-        
+        //
+        let attributeTextReminderList = NSMutableAttributedString(string: "⏰Reminder List: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: .infinity)])
+        //
+        let arrReminderMovies = CoreDataHandler.shareInstance.allRecords(ReminderMovies.self)
+        let countItem = (arrReminderMovies.count>2) ? 2 : arrReminderMovies.count
+        for index in 0..<countItem {
+            let dateformatter = DateFormatter()
+            dateformatter.dateStyle = .full
+            dateformatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+            dateformatter.locale = Locale.current
+            let convertTimeintervalToDate = NSDate(timeIntervalSince1970: TimeInterval(arrReminderMovies[index].time_reminder)) as Date
+            let dateString = dateformatter.string(from: convertTimeintervalToDate as Date)
+            attributeTextReminderList.append(NSAttributedString(string: "\n‣ \(arrReminderMovies[index].title!) - ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: .infinity)]))
+            attributeTextReminderList.append(NSAttributedString(string:"\(arrReminderMovies[index].vote_average)/10\n\(dateString)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)]))
+        }
+        //
+        let paragraphStyleReminderTextView = NSMutableParagraphStyle()
+        paragraphStyleReminderTextView.lineSpacing = 6
+        attributeText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributeText.string.characters.count))
+        //
+        reminderListTextView.attributedText = attributeTextReminderList
     }
     
     fileprivate func setupViews() {
@@ -96,7 +115,7 @@ class UserController: UIViewController {
         //
         separatorLine.anchor(editButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 65, widthConstant: 0, heightConstant: 0.5)
         //
-        reminderListTextView.anchor(separatorLine.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 160)
+        reminderListTextView.anchor(separatorLine.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 120)
         //
         showAllReminderButton.anchor(reminderListTextView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 70, widthConstant: 0, heightConstant: 40)
     }
@@ -144,22 +163,6 @@ class UserController: UIViewController {
         let textView = UITextView()
         textView.isSelectable = false
         textView.isEditable = false
-        //
-        let attributeText = NSMutableAttributedString()
-        attributeText.append(NSAttributedString(string: "🎂DOB: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: 16)]))
-        attributeText.append(NSAttributedString(string: "07/03/1993\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)]))
-        //
-        attributeText.append(NSAttributedString(string: "📨Email: : ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: 16)]))
-        attributeText.append(NSAttributedString(string: "hasam@gmail.com\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)]))
-        //
-        attributeText.append(NSAttributedString(string: "💑Sex: ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: 16)]))
-        attributeText.append(NSAttributedString(string: "Male", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)]))
-        //
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 12
-        attributeText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributeText.string.characters.count))
-        textView.attributedText = attributeText
-        textView.textColor = UIColor.darkGray
         //
         return textView
     }()

@@ -102,9 +102,9 @@ class ReminderMovieController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-//        let detailView = DetailMovieViewController()
-//        detailView.idMovie = Int(self.moviesList[indexPath.row].id)
-//        self.navigationController?.pushViewController(detailView, animated: true)
+        let detailView = DetailMovieViewController()
+        detailView.idMovie = Int(self.moviesList[indexPath.row].id)
+        self.navigationController?.pushViewController(detailView, animated: true)
     }
 }
 

@@ -32,6 +32,7 @@ let UPCOMING_NOTIFICATION = NSNotification.Name("LoadingUpcomingMovie")
 let NOWPLAYING_NOTIFICATION = NSNotification.Name("LoadingNewPlayingMovie")
 // 6
 let headerColor = UIColor.rgb(red: 85, green: 60, blue: 92)
+let bgViewColor = UIColor.rgb(red: 58, green: 62, blue: 71)
 let borderColor = UIColor.rgb(red: 159, green: 99, blue: 28)
 let bgCellColor = UIColor.rgb(red: 58, green: 62, blue: 71)
 let rateTextColor = UIColor.rgb(red: 54, green: 206, blue: 235)

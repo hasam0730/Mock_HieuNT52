@@ -14,7 +14,7 @@ class SearchViewController: UITableViewController {
     var listMovies = [Movie]()
     let noRecordLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSAttributedString(string: "No Record", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: .infinity), NSForegroundColorAttributeName: UIColor.darkGray])
+        label.attributedText = NSAttributedString(string: "No Record", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: .infinity), NSForegroundColorAttributeName: UIColor.lightGray])
         label.textAlignment = .center
         return label
     }()
@@ -46,7 +46,7 @@ class SearchViewController: UITableViewController {
         self.definesPresentationContext = true
         tableView.register(RowTableView.self, forCellReuseIdentifier: cellId)
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = bgCellColor
+        tableView.backgroundColor = bgViewColor
     }
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -75,36 +75,6 @@ class SearchViewController: UITableViewController {
         glassIconView?.tintColor = UIColor.white
         return searchBar
     }()
-//    func customUISearchBar() {
-//        //*-------------custom SearchBar
-//        searchBar.isTranslucent = false
-//        searchController = UISearchController(searchResultsController: nil)
-//        definesPresentationContext = true
-//        searchBar.placeholder = "Type something here ..."
-//        searchBar.tintColor = UIColor.white
-//        searchBar.barTintColor = headerColor
-//        searchBar.backgroundColor = headerColor
-//        searchBar.backgroundImage = UIImage()
-//        searchBar.backgroundColor = headerColor
-//        
-//        //*-------------custom textField inside SearchBar
-//        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
-//        textFieldInsideSearchBar?.backgroundColor = textFieldSearchBar
-//        textFieldInsideSearchBar?.textColor = UIColor.white
-//        let textFieldInsideSearchBarLabel = textFieldInsideSearchBar!.value(forKey: "placeholderLabel") as? UILabel
-//        textFieldInsideSearchBarLabel?.textColor = UIColor.white
-//        
-//        //*-------------custom clear button
-//        let clearButton = textFieldInsideSearchBar?.value(forKey: "clearButton") as! UIButton
-//        clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
-//        clearButton.tintColor = UIColor.white
-//        
-//        //*--------------custom magnifier glass
-//        let glassIconView = textFieldInsideSearchBar?.leftView as? UIImageView
-//        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
-//        glassIconView?.tintColor = UIColor.white
-//        //*------------------------
-//    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

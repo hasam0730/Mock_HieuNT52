@@ -17,7 +17,7 @@ class SettingController: UITableViewController {
     var cellFilter = UITableViewCell()
     var cellSort = UITableViewCell()
     let labelTitles = ["Popular Movies", "Top Rated Movies", "Upcoming Movies", "NowPlaying Movies"]
-    let labelSortBy = ["Popula Movies", "Top Rate Movies"]
+    let labelSortBy = ["Popular Movies", "Top Rate Movies"]
     let headerTitles = ["Filter", "Sort by", "Number of loading"]
     var arrCheckmark = [UIImageView]()
     //
@@ -37,7 +37,7 @@ class SettingController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 600
         navigationItem.title = "Setting"
-        tableView.backgroundColor = bgCellColor
+        tableView.backgroundColor = bgViewColor
         self.navigationController?.navigationBar.isTranslucent = false
     }
     

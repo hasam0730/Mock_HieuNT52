@@ -45,6 +45,12 @@ class SearchFavoriteMovieViewController: UIViewController, UITableViewDelegate, 
         glassIconView?.tintColor = UIColor.white
         return searchBar
     }()
+    let noRecordLabel: UILabel = {
+        let label = UILabel()
+        label.attributedText = NSAttributedString(string: "No Record", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: .infinity), NSForegroundColorAttributeName: UIColor.lightGray])
+        label.textAlignment = .center
+        return label
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         //
@@ -71,6 +77,7 @@ class SearchFavoriteMovieViewController: UIViewController, UITableViewDelegate, 
         tableView.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - 64)
         tableView.register(RowSearchFavMovie.self, forCellReuseIdentifier: cellID)
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = bgViewColor
         setupNavigationBar()
     }
     
@@ -97,6 +104,13 @@ class SearchFavoriteMovieViewController: UIViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.filteredMovies.count == 0 {
+            tableView.addSubview(noRecordLabel)
+            noRecordLabel.anchorCenterXToSuperview()
+            noRecordLabel.anchor(view.topAnchor, left: nil, bottom: nil, right: nil, topConstant: 50, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 100)
+        } else {
+            noRecordLabel.removeFromSuperview()
+        }
         return self.filteredMovies.count
     }
     
@@ -135,139 +149,3 @@ extension SearchFavoriteMovieViewController: UISearchBarDelegate {
         filterContentForSearchText(searchText)
     }
 }
-
-    
-    
-//    var searchController : UISearchController = {
-//        let searchController = UISearchController(searchResultsController:  nil)
-//        searchController.searchBar.showsCancelButton = false
-//        searchController.searchBar.sizeToFit()
-//        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 20)
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        searchController.dimsBackgroundDuringPresentation = true
-//        return searchController
-//    }() // searchController
-//    
-//    var searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20)) // uisearchBar
-//    
-//    var moviesList = [FavoriteMovies]() // danh sách all fav movies
-//    
-//    let noRecordLabel: UILabel = {
-//        let label = UILabel()
-//        label.attributedText = NSAttributedString(string: "No Record", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: .infinity), NSForegroundColorAttributeName: UIColor.darkGray])
-//        label.textAlignment = .center
-//        return label
-//    }() // no record label
-//    
-//    var filteredMovies = [FavoriteMovies]() // danh sách phim được filtered
-//    
-//    let tableView = UITableView() // define tableView
-//    
-//    override func viewDidLoad() {
-////        tableView.tableHeaderView = searchController.searchBar
-//        super.viewDidLoad()
-//        //
-//        setupViews()
-//        /* Setup delegates */
-//        searchBar.delegate = self
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//    }
-//    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        moviesList = fetchingFavoriteMovies()
-//        tableView.reloadData()
-//    }
-//    
-//    fileprivate func setupViews() {
-//        hideKeyboardWhenTappedAround()
-//        // *setup navigationBar*
-//        setupNavigationBar()
-//        //
-//        tableView.register(CellForRowTableView.self, forCellReuseIdentifier: cellID)
-//        setStatusBarBackgroundColor(color: headerColor)
-//        self.view.addSubview(tableView)
-//        tableView.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - 64)
-//        tableView.tableFooterView = UIView()
-//        tableView.backgroundColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
-//    }
-//    
-//    func setupNavigationBar() {
-//        // *setup navigation*
-//        let navigationItem = UINavigationItem()
-//        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: UIScreen.main.bounds.width, height:44)) // Offset by 20 pixels vertically to take the status bar into account
-//        navigationItem.title = "Reminder Movies"
-//        navigationBar.isTranslucent = false
-//        navigationBar.barTintColor = headerColor
-//        // Create left and right button for navigation item
-//        let leftButton =  UIBarButtonItem(image: #imageLiteral(resourceName: "Back").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(back))
-//        // Create two buttons for the navigation item
-//        navigationItem.leftBarButtonItem = leftButton
-//        navigationItem.titleView = searchBar
-//        searchBar.placeholder = "Type some words here ..."
-//        // Assign the navigation item to the navigation bar
-//        navigationBar.items = [navigationItem]
-//        //
-//        self.view.addSubview(navigationBar)
-//    }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("asda")
-//    }
-//    
-//    func back() {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//    
-//    func fetchingFavoriteMovies() -> [FavoriteMovies] {
-//        let array = CoreDataHandler.shareInstance.allRecords(FavoriteMovies.self)
-//        return array
-//    }
-//    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.moviesList.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! CellForRowTableView
-//        cell.movie = moviesList[indexPath.item]
-//        return cell
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return CGFloat(150)
-//    }
-//    
-//    fileprivate func filterContentForSearchText(_ searchText : String) {
-//        self.filteredMovies = self.moviesList.filter({ (movie: FavoriteMovies) -> Bool in
-//            return (movie.title?.folding(options: .diacriticInsensitive, locale: NSLocale.current).lowercased().contains(searchText.folding(options: .diacriticInsensitive, locale: .current).lowercased()))! // remove diacritics from string. then lowercase string, check containt
-//        })
-//        tableView.reloadData()
-//    }
-//}
-//
-//
-//
-//
-////extension SearchFavoriteMovieViewController: UITableViewDelegate {
-////
-////}
-//
-//extension SearchFavoriteMovieViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        filterContentForSearchText(searchText)
-//    }
-//    
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        
-//    }
-//}
-
-
-
-

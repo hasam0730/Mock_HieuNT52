@@ -123,7 +123,7 @@
 		8BA932141E6D066F004F5170 /* CellForRowReminderMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellForRowReminderMovie.swift; sourceTree = "<group>"; };
 		8BA932161E6E8F5F004F5170 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		8BA932181E6F0C48004F5170 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8BA9321F1E7022BB004F5170 /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		8BA9321F1E7022BB004F5170 /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopupView.swift; path = ../PopupView.swift; sourceTree = "<group>"; };
 		8BA9325F1E70FA57004F5170 /* RowSettingSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSettingSlider.swift; sourceTree = "<group>"; };
 		8BA932611E70FB23004F5170 /* RowSettingLabelStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSettingLabelStepper.swift; sourceTree = "<group>"; };
 		8BB43BC21E66BA0E0036E7E6 /* DetailMovieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMovieView.swift; sourceTree = "<group>"; };
@@ -308,6 +308,7 @@
 		8B5A99A81E5C195B0016933F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B95BB541E76689700207C38 /* CustomView */,
 				8B5A99C11E5C266B0016933F /* Cells */,
 				8B5A99AC1E5C1D970016933F /* CustomTabBarView.swift */,
 				8B5A99B61E5C1F5D0016933F /* MoviesListView.swift */,
@@ -319,7 +320,6 @@
 				8B44E38C1E6420530097A591 /* EditProfileView.swift */,
 				8BB43BC21E66BA0E0036E7E6 /* DetailMovieView.swift */,
 				8BA932101E6D0444004F5170 /* ReminderMovieView.swift */,
-				8BA9321F1E7022BB004F5170 /* PopupView.swift */,
 				8BD0ACAA1E72CA0F00ED323F /* SearchView.swift */,
 				8BD0ACAC1E73AC8700ED323F /* SearchFavoriteMovieView.swift */,
 			);
@@ -348,6 +348,14 @@
 				8B6739CC1E74411D00AF0EF2 /* RowTableView.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		8B95BB541E76689700207C38 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				8BA9321F1E7022BB004F5170 /* PopupView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		8BB43BED1E695BE60036E7E6 /* ObjectCoreData */ = {

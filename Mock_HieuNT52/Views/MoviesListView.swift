@@ -18,7 +18,7 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
     var filteredMovie = [Movie]()
     let noRecordLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSAttributedString(string: "No Record", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: .infinity), NSForegroundColorAttributeName: UIColor.darkGray])
+        label.attributedText = NSAttributedString(string: "No Record", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: .infinity), NSForegroundColorAttributeName: UIColor.lightGray])
         label.textAlignment = .center
         return label
     }()
@@ -29,7 +29,7 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
         //
         view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         //
-        self.collectionView?.backgroundColor = bgCellColor
+        self.collectionView?.backgroundColor = bgViewColor
         self.collectionView?.alwaysBounceVertical = true
         //
         NotificationCenter.default.addObserver(forName: RELOAD_NOTIFICATION, object: nil, queue: nil, using: {_ in 
@@ -43,7 +43,6 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
         //
         self.registerCellClass()
         //
-//        checkingDateUserDefault()
         preparingConditionFilterData()
         //
         NotificationCenter.default.addObserver(self, selector: #selector(preparingConditionFilterData), name: FILTER_NOTIFICATION , object: nil)
@@ -107,7 +106,8 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
             let setting = self.gettingDataSettingDefault()
             //
             self.dataList = data
-            self.filteredMovie = self.dataList.filter { Float($0.vote_average!) >= Float(rateMovie!)}
+//            self.filteredMovie = self.dataList.filter { Float($0.vote_average!) >= Float(rateMovie!) }
+            self.filteredMovie = self.dataList.filter{ Float($0.vote_average!) >= Float(rateMovie!) &&  setting.releaseYear! <= Int(($0.release_date?.components(separatedBy: "-")[0])!)! }
             //
             var arr = [Movie]()
             for item in self.filteredMovie {
@@ -217,9 +217,9 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let detailView = DetailMovieViewController()
-//        detailView.idMovie = self.filteredMovie[indexPath.item].id
-//        self.navigationController?.pushViewController(detailView, animated: true)
+        let detailView = DetailMovieViewController()
+        detailView.idMovie = self.filteredMovie[indexPath.item].id
+        self.navigationController?.pushViewController(detailView, animated: true)
         print(indexPath.row)
     }
     //
@@ -233,7 +233,7 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
         let numberLoad = setting.numberLoad!  as Int
 //        let releaseYear = setting.releaseYear! as Int
         //
-        if indexPath.row > self.filteredMovie.count - 2 {
+        if indexPath.row > self.filteredMovie.count - 4 {
             print(gettingDataSettingDefault().numberLoad ?? 0)
             if pageNumber < numberLoad {
                 pageNumber += 1

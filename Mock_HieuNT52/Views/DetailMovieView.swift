@@ -70,7 +70,7 @@ class DetailMovieViewController: UIViewController {
                                         //
                                         let attrText = NSAttributedString(string: currCast.name!, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15), NSForegroundColorAttributeName: UIColor.darkGray])
                                         strSelf.castImageView.setShowActivityIndicator(true)
-                                        strSelf.castImageView.sd_setImage(with: URL(string: "\(urlImage)\(kProfileSize.w185.rawValue)\(currCast.profile_path!)")!, placeholderImage: #imageLiteral(resourceName: "zuckdog"))
+                                        strSelf.castImageView.sd_setImage(with: URL(string: "\(urlImage)\(kProfileSize.w185.rawValue)\(currCast.profile_path!)")!)
 
                                         strSelf.castImageView.addingShadowTo(view: strSelf.castImageView)
                                         //
