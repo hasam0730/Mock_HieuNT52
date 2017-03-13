@@ -239,17 +239,7 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
                 pageNumber += 1
                 DataHandler.shared.gettingMovieFrom(urlString: urlString!, pageNumber: pageNumber, completion: {(data:[Movie]) in
                     //
-                    
                     var dataMoreMovie = data.filter { return Float($0.vote_average!) >= Float(rateMovie) && setting.releaseYear! <= Int(($0.release_date?.components(separatedBy: "-")[0])!)!}
-//                    var arr = [Movie]()
-//                    for item in dataMoreMovie {
-//                        if let releaseTime = Int((item.release_date?.components(separatedBy: "-")[0])!) {
-//                            if setting.releaseYear! <= releaseTime {
-//                                arr.append(item)
-//                            }
-//                        }
-//                    }
-//                    dataMoreMovie = arr
                     if (modeSort == 0) {
                         dataMoreMovie = dataMoreMovie.sorted(by: { $0.popularity! > $1.popularity! })
                     } else {
@@ -263,27 +253,6 @@ class MoviesListController: UICollectionViewController, UICollectionViewDelegate
                     }
                 })
             }
-            
-            
-            
-//            pageNumber += 1
-//            DataHandler.shared.gettingMovieFrom(urlString: urlString!, pageNumber: pageNumber, completion: {(data:[Movie]) in
-//                let dataMoreMovie = data
-//                for item in dataMoreMovie {
-//                    self.filteredMovie.append(item)
-//                    self.collectionView?.performBatchUpdates({
-//                        let indexpath = IndexPath(item: self.filteredMovie.count-1, section: 0)
-////                        DispatchQueue.main.async {
-//                            self.collectionView?.insertItems(at: [indexpath])
-//                        self.collectionView?.reloadItems(at: [indexPath])
-//                            
-////                        }
-//                        
-//                    }, completion: nil)
-//                }
-//                
-//            })
-            
         }
     }
     

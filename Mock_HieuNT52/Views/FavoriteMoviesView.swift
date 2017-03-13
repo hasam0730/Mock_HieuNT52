@@ -41,14 +41,10 @@ class FavoriteMoviesController: UITableViewController {
         //
         self.searchController = UISearchController(searchResultsController:  nil)
         self.searchController.searchResultsUpdater = self
-//        self.searchController.delegate = self
-//        self.searchController.searchBar.delegate = self
         self.searchController.searchBar.showsCancelButton = false
         self.searchController.searchBar.sizeToFit()
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = true
-        //
-//        self.navigationItem.titleView = searchController.searchBar
         self.definesPresentationContext = true
         //
         let leftButton =  UIBarButtonItem(image: #imageLiteral(resourceName: "Search").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(showSearchView))
@@ -116,30 +112,8 @@ class FavoriteMoviesController: UITableViewController {
     }
 }
 
-//extension FavoriteMoviesController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-//        //        strScope = searchBar.scopeButtonTitles![selectedScope].lowercased()
-//        //        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
-//    }
-//    
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        //        searchBar.selectedScopeButtonIndex = 0
-//        //        strScope = "all"
-//        //        myTableView.reloadData()
-//    }
-//}
-//
-//extension FavoriteMoviesController: UISearchControllerDelegate {
-//    
-//}
-
 extension FavoriteMoviesController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-//        let searchBar = searchController.searchBar
-//        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-        //        ["All", "Chocolate", "Hard", "Other"]
-        
-//        filterContentForSearchText(searchBar.text!)
         self.present(SearchFavoriteMovieViewController(), animated: true)
     }
 }
